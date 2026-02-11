@@ -1,1061 +1,791 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project KYLN | Actinide Discovery Engine</title>
+    <title>Project KYLN | Relativistic Molecular Discovery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              paper: "#FDFBF7",
+              ink: "#2D3748",
+              charcoal: "#1A202C",
+              "uranium-dim": "#8FBC8F",
+              "uranium-glow": "#B8D949",
+              cobalt: "#2C5282",
+              copper: "#B7791F",
+              pencil: "#718096",
+            },
+            fontFamily: {
+              serif: ["Merriweather", "serif"],
+              sans: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            backgroundImage: {
+              "graph-paper":
+                "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)",
+            },
+          },
+        },
+      };
+    </script>
+
     <style>
-      :root {
-        --bg-color: #050507;
-        --accent-primary: #7c3aed; /* Deep Purple */
-        --accent-secondary: #2dd4bf; /* Teal/Cyan */
-        --accent-tertiary: #f43f5e; /* Rose for Actinides */
-        --text-main: #f3f4f6;
-        --text-muted: #9ca3af;
-        --glass-bg: rgba(255, 255, 255, 0.03);
-        --glass-border: rgba(255, 255, 255, 0.05);
-        --card-hover: rgba(255, 255, 255, 0.07);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
+      /* Custom Styles for Scientific Aesthetic */
       body {
-        background-color: var(--bg-color);
-        color: var(--text-main);
-        font-family:
-          "Inter",
-          system-ui,
-          -apple-system,
-          sans-serif;
-        overflow-x: hidden;
-        line-height: 1.6;
+        background-color: #fdfbf7;
+        color: #1a202c;
+        background-size: 40px 40px; /* Grid size */
       }
 
-      /* --- TYPOGRAPHY --- */
-      h1,
-      h2,
-      h3 {
-        letter-spacing: -0.02em;
-        font-weight: 700;
-      }
-      h1 {
-        font-size: 3.5rem;
-        line-height: 1.1;
-        background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      h2 {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-        color: #fff;
-      }
-      h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-        color: var(--accent-secondary);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-      p {
-        color: var(--text-muted);
-        font-size: 1.1rem;
-        max-width: 65ch;
-      }
-      code {
-        font-family: "JetBrains Mono", "Fira Code", monospace;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 0.2em 0.4em;
-        border-radius: 4px;
-        font-size: 0.9em;
+      .graph-bg {
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(113, 128, 150, 0.07) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(113, 128, 150, 0.07) 1px,
+            transparent 1px
+          );
+        background-size: 20px 20px;
       }
 
-      /* --- LAYOUT --- */
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-        position: relative;
-        z-index: 2;
-      }
-      section {
-        padding: 6rem 0;
-        border-bottom: 1px solid var(--glass-border);
+      /* Handwritten note style */
+      .handwritten {
+        font-family: "Inter", sans-serif; /* Fallback, ideally a script font */
+        font-style: italic;
+        color: #718096;
+        border-bottom: 1px solid #cbd5e0;
       }
 
-      /* --- ANIMATED BACKGROUND --- */
-      #canvas-wrap {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        pointer-events: none;
-        opacity: 0.6;
+      /* Slow rotation for orbitals */
+      @keyframes orbit {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(180deg) scale(0.95);
+        }
+        100% {
+          transform: rotate(360deg) scale(1);
+        }
+      }
+      .animate-orbit {
+        animation: orbit 20s linear infinite;
       }
 
-      /* --- HERO --- */
-      .hero {
-        min-height: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
       }
-      .hero-tag {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        border: 1px solid var(--accent-secondary);
-        color: var(--accent-secondary);
-        border-radius: 50px;
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem;
-        backdrop-filter: blur(10px);
-      }
-      .hero-desc {
-        margin: 2rem 0;
-        font-size: 1.25rem;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        padding: 1rem 2rem;
-        background: var(--text-main);
-        color: var(--bg-color);
-        text-decoration: none;
-        font-weight: 600;
-        border-radius: 8px;
-        transition: transform 0.2s;
-      }
-      .btn:hover {
-        transform: translateY(-2px);
-      }
-      .btn-secondary {
-        background: transparent;
-        color: var(--text-main);
-        border: 1px solid var(--glass-border);
-        margin-left: 1rem;
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
       }
 
-      /* --- MODULES GRID --- */
-      .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-      }
-      .card {
-        background: var(--glass-bg);
-        border: 1px solid var(--glass-border);
-        padding: 2.5rem;
-        border-radius: 16px;
-        backdrop-filter: blur(12px);
+      /* Element Tile Hover Effects */
+      .element-tile {
         transition: all 0.3s ease;
       }
-      .card:hover {
-        transform: translateY(-5px);
-        background: var(--card-hover);
-        border-color: var(--accent-secondary);
+      .element-tile:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-color: #b8d949;
       }
-      .icon {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-        display: block;
+      .element-tile.active {
+        background-color: #f0fff4;
+        border-color: #2c5282;
+        color: #2c5282;
       }
 
-      /* --- PHASES (Timeline) --- */
-      .timeline {
-        position: relative;
-        max-width: 800px;
-        margin: 0 auto;
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
       }
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 2px;
-        background: linear-gradient(
-          to bottom,
-          var(--accent-secondary),
-          var(--accent-primary),
-          var(--accent-tertiary)
-        );
+      ::-webkit-scrollbar-track {
+        background: #fdfbf7;
       }
-      .phase {
-        margin-left: 2rem;
-        margin-bottom: 4rem;
-        position: relative;
-      }
-      .phase::before {
-        content: "";
-        position: absolute;
-        left: -2.6rem;
-        top: 0.5rem;
-        width: 1.2rem;
-        height: 1.2rem;
-        background: var(--bg-color);
-        border: 2px solid #fff;
-        border-radius: 50%;
-        z-index: 2;
-      }
-      .phase.active::before {
-        background: var(--accent-tertiary);
-        box-shadow: 0 0 15px var(--accent-tertiary);
-        border-color: var(--accent-tertiary);
-      }
-      .phase h4 {
-        font-size: 1.5rem;
-        color: #fff;
-        margin-bottom: 0.5rem;
-      }
-      .badge {
-        display: inline-block;
-        font-size: 0.8rem;
-        padding: 0.2rem 0.6rem;
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e0;
         border-radius: 4px;
-        margin-bottom: 1rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
       }
-      .badge-green {
-        background: rgba(16, 185, 129, 0.2);
-        color: #34d399;
-      }
-      .badge-red {
-        background: rgba(244, 63, 94, 0.2);
-        color: #fb7185;
-      }
-
-      /* --- THE ASK --- */
-      .funding-box {
-        background: linear-gradient(
-          145deg,
-          rgba(124, 58, 237, 0.1),
-          rgba(0, 0, 0, 0)
-        );
-        border: 1px solid var(--accent-primary);
-        padding: 3rem;
-        border-radius: 16px;
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      .funding-highlight {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #fff;
-        margin: 1rem 0;
-        display: block;
-      }
-      .progress-bar {
-        width: 100%;
-        height: 6px;
-        background: var(--glass-border);
-        margin: 2rem 0;
-        position: relative;
-        border-radius: 3px;
-        overflow: hidden;
-      }
-      .progress-fill {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 66%;
-        background: linear-gradient(
-          90deg,
-          var(--accent-secondary),
-          var(--accent-primary)
-        );
-      }
-
-      /* --- FOOTER --- */
-      footer {
-        padding: 4rem 0;
-        text-align: center;
-        border-top: 1px solid var(--glass-border);
-        font-size: 0.9rem;
-        color: var(--text-muted);
-      }
-
-      @media (max-width: 768px) {
-        h1 {
-          font-size: 2.5rem;
-        }
-        .hero {
-          min-height: auto;
-          padding-top: 8rem;
-        }
-        .timeline::before {
-          left: -10px;
-        }
-        .phase {
-          margin-left: 1rem;
-        }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #718096;
       }
     </style>
   </head>
-  <body>
-    <canvas id="canvas-wrap"></canvas>
-
-    <div class="container">
-      <section class="hero">
-        <div class="hero-tag">Project KYLN</div>
-        <h1>Kinetic Yield Learning Network</h1>
-        <p class="hero-desc">
-          An autonomous, multi-fidelity AI engine designed to discover novel
-          actinide chelators at chemical accuracy. Bridging the gap between
-          organic data abundance and relativistic f-block scarcity.
-        </p>
-        <div>
-          <a href="#roadmap" class="btn">View Roadmap</a>
-          <a href="https://github.com/reed-fenno/kyln" class="btn btn-secondary"
-            >GitHub Repo</a
+  <body
+    class="graph-bg min-h-screen flex flex-col font-sans selection:bg-uranium-dim selection:text-white"
+  >
+    <nav
+      class="fixed w-full z-50 bg-paper/90 backdrop-blur-sm border-b border-gray-200"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center space-x-2">
+          <div class="w-3 h-3 bg-uranium-glow rounded-full"></div>
+          <span class="font-serif font-bold text-lg tracking-tight"
+            >Project KYLN</span
           >
         </div>
-      </section>
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-pencil">
+          <a href="#notebook" class="hover:text-cobalt transition-colors"
+            >Research Log</a
+          >
+          <a href="#architecture" class="hover:text-cobalt transition-colors"
+            >Architecture</a
+          >
+          <a href="#actinides" class="hover:text-cobalt transition-colors"
+            >Actinides</a
+          >
+          <a href="#roadmap" class="hover:text-cobalt transition-colors"
+            >Roadmap</a
+          >
+        </div>
+        <a
+          href="https://github.com/reedfenno/kyln"
+          class="text-xs font-mono border border-gray-300 px-3 py-1 rounded hover:bg-gray-100 transition-colors"
+        >
+          View on GitHub
+        </a>
+      </div>
+    </nav>
 
-      <section id="architecture">
-        <h3>The Architecture</h3>
-        <h2>Three Modules. One Loop.</h2>
-        <div class="grid-3">
-          <div class="card">
-            <span class="icon">🧠</span>
-            <h4>Kilonova</h4>
+    <header class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-10 pointer-events-none"
+      >
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-full h-full animate-orbit"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.5"
+            d="M100,100 m-90,0 a90,90 0 1,0 180,0 a90,90 0 1,0 -180,0"
+          />
+          <ellipse
+            cx="100"
+            cy="100"
+            rx="90"
+            ry="30"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.5"
+            transform="rotate(45 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="100"
+            rx="90"
+            ry="30"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.5"
+            transform="rotate(-45 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="100"
+            rx="90"
+            ry="30"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.5"
+            transform="rotate(90 100 100)"
+          />
+        </svg>
+      </div>
+
+      <div class="max-w-4xl mx-auto text-center relative z-10 animate-float">
+        <div
+          class="inline-block mb-4 px-3 py-1 border border-cobalt/30 rounded-full bg-cobalt/5 text-cobalt text-xs font-mono tracking-widest uppercase"
+        >
+          Kinetic Yield Learning Network
+        </div>
+        <h1
+          class="font-serif text-5xl md:text-7xl text-charcoal mb-6 leading-tight"
+        >
+          AI for Relativistic <br />
+          <span class="italic text-cobalt">Molecular Discovery</span>
+        </h1>
+        <p
+          class="text-lg md:text-xl text-pencil max-w-2xl mx-auto leading-relaxed mb-10"
+        >
+          A multi-fidelity, active-learning engine combining E(3)-equivariant
+          graph neural networks with automated DFT verification to discover
+          novel chelators for f-block elements.
+        </p>
+
+        <div class="flex justify-center gap-4">
+          <div
+            class="text-left font-mono text-xs text-pencil border-l-2 border-uranium-glow pl-3"
+          >
+            <span class="block text-charcoal font-bold">Accuracy</span>
+            &lt;1 kcal/mol
+          </div>
+          <div
+            class="text-left font-mono text-xs text-pencil border-l-2 border-cobalt pl-3"
+          >
+            <span class="block text-charcoal font-bold">Architecture</span>
+            PaiNN / GNN
+          </div>
+          <div
+            class="text-left font-mono text-xs text-pencil border-l-2 border-copper pl-3"
+          >
+            <span class="block text-charcoal font-bold">Domain</span>
+            U, Np, Pu, Am
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="notebook" class="py-20 px-6 bg-white border-y border-gray-200">
+      <div class="max-w-6xl mx-auto">
+        <div
+          class="flex items-end justify-between mb-12 border-b border-gray-300 pb-4"
+        >
+          <h2 class="font-serif text-3xl text-charcoal">Lab Notebook</h2>
+          <span class="font-mono text-xs text-pencil">Entry: 2026-02-10</span>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <article
+            class="p-6 bg-paper border border-gray-200 shadow-sm relative group hover:shadow-md transition-shadow"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gray-200 group-hover:bg-copper transition-colors"
+            ></div>
+            <h3 class="font-mono text-sm text-copper mb-2">01. THE PROBLEM</h3>
+            <h4 class="font-serif text-xl mb-4">The Actinide Gap</h4>
+            <p class="text-sm text-pencil leading-relaxed mb-4">
+              Relativistic f-electron chemistry is notoriously difficult. Data
+              is scarce, experiments are hazardous, and computational costs for
+              high-level DFT (ZORA/CASSCF) are prohibitive.
+            </p>
+            <ul class="text-xs font-mono text-charcoal space-y-2">
+              <li class="flex items-center">
+                <span class="w-1.5 h-1.5 bg-red-400 rounded-full mr-2"></span
+                >Strong correlation
+              </li>
+              <li class="flex items-center">
+                <span class="w-1.5 h-1.5 bg-red-400 rounded-full mr-2"></span
+                >Relativistic effects
+              </li>
+              <li class="flex items-center">
+                <span class="w-1.5 h-1.5 bg-red-400 rounded-full mr-2"></span
+                >Sparse data
+              </li>
+            </ul>
+          </article>
+
+          <article
+            class="p-6 bg-paper border border-gray-200 shadow-sm relative group hover:shadow-md transition-shadow"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gray-200 group-hover:bg-cobalt transition-colors"
+            ></div>
+            <h3 class="font-mono text-sm text-cobalt mb-2">02. THE SOLUTION</h3>
+            <h4 class="font-serif text-xl mb-4">Transfer Learning</h4>
+            <p class="text-sm text-pencil leading-relaxed mb-4">
+              We leverage abundant organic data (ANI-2x) to learn physics,
+              transfer to transition metals (tmQM), and fine-tune on scarce
+              actinides using E(3)-equivariant networks.
+            </p>
+            <div
+              class="mt-4 p-3 bg-gray-50 border border-gray-100 rounded text-xs font-mono text-charcoal"
+            >
+              E = E<sub>organic</sub> + &Delta;E<sub>metal</sub> + &Delta;E<sub
+                >rel</sub
+              >
+            </div>
+          </article>
+
+          <article
+            class="p-6 bg-paper border border-gray-200 shadow-sm relative group hover:shadow-md transition-shadow"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gray-200 group-hover:bg-uranium-dim transition-colors"
+            ></div>
+            <h3 class="font-mono text-sm text-uranium-dim mb-2">
+              03. THE LOOP
+            </h3>
+            <h4 class="font-serif text-xl mb-4">Active Discovery</h4>
+            <p class="text-sm text-pencil leading-relaxed mb-4">
+              A closed-loop system: <strong>Forge</strong> generates ligands,
+              <strong>Kilonova</strong> predicts stability with uncertainty, and
+              <strong>Reactor</strong> orchestrates DFT verification for
+              high-uncertainty candidates.
+            </p>
+            <div
+              class="flex items-center justify-between text-xs font-mono text-pencil mt-2"
+            >
+              <span>Generate</span> &rarr; <span>Predict</span> &rarr;
+              <span>Verify</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="py-20 px-6">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="font-serif text-3xl text-charcoal mb-12 text-center">
+          System Architecture
+        </h2>
+
+        <div
+          class="grid md:grid-cols-3 gap-0 border border-gray-300 rounded-lg overflow-hidden"
+        >
+          <div
+            class="bg-white p-8 border-b md:border-b-0 md:border-r border-gray-300"
+          >
+            <div
+              class="h-12 w-12 rounded-full bg-indigo-50 flex items-center justify-center mb-6"
+            >
+              <svg
+                class="w-6 h-6 text-indigo-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl mb-2">Kilonova</h3>
             <p
-              style="
-                font-size: 0.9rem;
-                margin-top: 0.5rem;
-                margin-bottom: 1rem;
-                color: var(--accent-secondary);
-              "
+              class="text-xs font-mono text-gray-500 mb-4 uppercase tracking-wide"
             >
               The AI Engine
             </p>
-            <p>
-              E(3)-equivariant graph neural networks (PaiNN) with multi-fidelity
-              embeddings. Learns atomic interactions from organic foundations
-              and transfers knowledge to actinides.
-            </p>
+            <ul class="text-sm text-pencil space-y-3">
+              <li>• E(3)-Equivariant GNN (PaiNN)</li>
+              <li>• Conservative Force Fields</li>
+              <li>• 5-Member Ensemble (UQ)</li>
+              <li>• Transfer Surgery</li>
+            </ul>
           </div>
-          <div class="card">
-            <span class="icon">⚗️</span>
-            <h4>Forge</h4>
+
+          <div
+            class="bg-white p-8 border-b md:border-b-0 md:border-r border-gray-300"
+          >
+            <div
+              class="h-12 w-12 rounded-full bg-emerald-50 flex items-center justify-center mb-6"
+            >
+              <svg
+                class="w-6 h-6 text-emerald-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl mb-2">Forge</h3>
             <p
-              style="
-                font-size: 0.9rem;
-                margin-top: 0.5rem;
-                margin-bottom: 1rem;
-                color: var(--accent-secondary);
-              "
+              class="text-xs font-mono text-gray-500 mb-4 uppercase tracking-wide"
             >
               The Generator
             </p>
-            <p>
-              Evolutionary algorithms for ligand mutation and crossover.
-              Assembles 3D metal-ligand geometries using fragment-based design
-              (BRICS) and geometry filtering.
-            </p>
+            <ul class="text-sm text-pencil space-y-3">
+              <li>• Evolutionary Algorithms</li>
+              <li>• 3D Complex Assembly (Architector)</li>
+              <li>• Geometry Filtering</li>
+              <li>• RDKit Mutations</li>
+            </ul>
           </div>
-          <div class="card">
-            <span class="icon">🔄</span>
-            <h4>Reactor</h4>
+
+          <div class="bg-white p-8">
+            <div
+              class="h-12 w-12 rounded-full bg-amber-50 flex items-center justify-center mb-6"
+            >
+              <svg
+                class="w-6 h-6 text-amber-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl mb-2">Reactor</h3>
             <p
-              style="
-                font-size: 0.9rem;
-                margin-top: 0.5rem;
-                margin-bottom: 1rem;
-                color: var(--accent-secondary);
-              "
+              class="text-xs font-mono text-gray-500 mb-4 uppercase tracking-wide"
             >
               The Orchestrator
             </p>
-            <p>
-              Manages the active learning lifecycle. Uses uncertainty sampling
-              to select high-value candidates for DFT verification (ORCA) and
-              autonomous retraining.
-            </p>
+            <ul class="text-sm text-pencil space-y-3">
+              <li>• Active Learning Loop</li>
+              <li>• Uncertainty Sampling</li>
+              <li>• ORCA / Slurm Backend</li>
+              <li>• Lifecycle Management</li>
+            </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="roadmap">
-        <h3>The Roadmap</h3>
-        <h2>From Foundation to Discovery</h2>
-
-        <div class="timeline">
-          <div class="phase">
-            <span class="badge badge-green">COMPLETED</span>
-            <h4>Phase 1: Foundation</h4>
-            <p>
-              Pre-training on 9M organic conformations (ANI-2x). The model
-              learns general chemical principles, forces, and invariance.
-            </p>
-          </div>
-
-          <div class="phase">
-            <span class="badge badge-green">IN PROGRESS</span>
-            <h4>Phase 2: Transfer</h4>
-            <p>
-              Transfer surgery and fine-tuning on 86k transition metal complexes
-              (tmQM). Adapting the latent space from organic to coordination
-              chemistry.
-            </p>
-          </div>
-
-          <div class="phase active">
-            <span class="badge badge-red">FUNDING REQUIRED</span>
-            <h4>Phase 3: Active Learning</h4>
-            <p>
-              The autonomous discovery loop for Actinides (U, Np, Pu). This
-              requires continuous retraining of the 5-member ensemble to drive
-              the uncertainty sampling.
-            </p>
-            <div
-              style="
-                margin-top: 1rem;
-                padding: 1rem;
-                border-left: 3px solid var(--accent-tertiary);
-                background: rgba(244, 63, 94, 0.05);
-              "
-            >
-              <strong>Bottleneck:</strong> Phase 3 requires a dedicated GPU (RTX
-              4090) to run the Kilonova trainer in loop with the DFT backend.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="funding">
-        <div class="funding-box">
-          <h3>Ignite Funding Goal</h3>
-          <span class="funding-highlight">Enable Autonomous Discovery</span>
-          <p>
-            I am a solo researcher at JHU implementing this pipeline. The code
-            is written. The architecture is sound. The missing piece is the
-            computational yield to run the active learning loop.
-          </p>
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-          <div
-            style="
-              display: flex;
-              justify-content: space-between;
-              font-size: 0.9rem;
-              color: var(--text-muted);
-            "
-          >
-            <span>Implementation</span>
-            <span style="color: #fff">Training Resources</span>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        <p>&copy; 2026 Project KYLN. Reed Fenno.</p>
-        <p style="margin-top: 0.5rem; opacity: 0.5">Johns Hopkins University</p>
-      </footer>
-    </div>
-
-    <script>
-      // Minimal script for "Molecular Network" background
-      const canvas = document.getElementById("canvas-wrap");
-      const ctx = canvas.getContext("2d");
-      let width, height;
-      let particles = [];
-
-      function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      }
-      window.addEventListener("resize", resize);
-      resize();
-
-      class Particle {
-        constructor() {
-          this.x = Math.random() * width;
-          this.y = Math.random() * height;
-          this.vx = (Math.random() - 0.5) * 0.5;
-          this.vy = (Math.random() - 0.5) * 0.5;
-          this.size = Math.random() * 2 + 1;
-        }
-        update() {
-          this.x += this.vx;
-          this.y += this.vy;
-          if (this.x < 0 || this.x > width) this.vx *= -1;
-          if (this.y < 0 || this.y > height) this.vy *= -1;
-        }
-        draw() {
-          ctx.fillStyle = "rgba(100, 116, 139, 0.3)";
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
-      for (let i = 0; i < 60; i++) particles.push(new Particle());
-
-      function animate() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach((p) => {
-          p.update();
-          p.draw();
-          particles.forEach((p2) => {
-            let dx = p.x - p2.x;
-            let dy = p.y - p2.y;
-            let dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 150) {
-              ctx.strokeStyle = `rgba(100, 116, 139, ${0.1 - dist / 1500})`;
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.stroke();
-            }
-          });
-        });
-        requestAnimationFrame(animate);
-      }
-      animate();
-    </script>
-  </body>
-  =======
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Project KYLN | Actinide Discovery Engine</title>
-      <style>
-        :root {
-          --bg-color: #050507;
-          --accent-primary: #7c3aed; /* Deep Purple */
-          --accent-secondary: #2dd4bf; /* Teal/Cyan */
-          --accent-tertiary: #f43f5e; /* Rose for Actinides */
-          --text-main: #f3f4f6;
-          --text-muted: #9ca3af;
-          --glass-bg: rgba(255, 255, 255, 0.03);
-          --glass-border: rgba(255, 255, 255, 0.05);
-          --card-hover: rgba(255, 255, 255, 0.07);
-        }
-
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
-        body {
-          background-color: var(--bg-color);
-          color: var(--text-main);
-          font-family:
-            "Inter",
-            system-ui,
-            -apple-system,
-            sans-serif;
-          overflow-x: hidden;
-          line-height: 1.6;
-        }
-
-        /* --- TYPOGRAPHY --- */
-        h1,
-        h2,
-        h3 {
-          letter-spacing: -0.02em;
-          font-weight: 700;
-        }
-        h1 {
-          font-size: 3.5rem;
-          line-height: 1.1;
-          background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        h2 {
-          font-size: 2.5rem;
-          margin-bottom: 2rem;
-          color: #fff;
-        }
-        h3 {
-          font-size: 1.25rem;
-          margin-bottom: 0.5rem;
-          color: var(--accent-secondary);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-        p {
-          color: var(--text-muted);
-          font-size: 1.1rem;
-          max-width: 65ch;
-        }
-        code {
-          font-family: "JetBrains Mono", "Fira Code", monospace;
-          background: rgba(255, 255, 255, 0.1);
-          padding: 0.2em 0.4em;
-          border-radius: 4px;
-          font-size: 0.9em;
-        }
-
-        /* --- LAYOUT --- */
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 2rem;
-          position: relative;
-          z-index: 2;
-        }
-        section {
-          padding: 6rem 0;
-          border-bottom: 1px solid var(--glass-border);
-        }
-
-        /* --- ANIMATED BACKGROUND --- */
-        #canvas-wrap {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 1;
-          pointer-events: none;
-          opacity: 0.6;
-        }
-
-        /* --- HERO --- */
-        .hero {
-          min-height: 90vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-        }
-        .hero-tag {
-          display: inline-block;
-          padding: 0.5rem 1rem;
-          border: 1px solid var(--accent-secondary);
-          color: var(--accent-secondary);
-          border-radius: 50px;
-          font-size: 0.9rem;
-          margin-bottom: 1.5rem;
-          backdrop-filter: blur(10px);
-        }
-        .hero-desc {
-          margin: 2rem 0;
-          font-size: 1.25rem;
-        }
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          padding: 1rem 2rem;
-          background: var(--text-main);
-          color: var(--bg-color);
-          text-decoration: none;
-          font-weight: 600;
-          border-radius: 8px;
-          transition: transform 0.2s;
-        }
-        .btn:hover {
-          transform: translateY(-2px);
-        }
-        .btn-secondary {
-          background: transparent;
-          color: var(--text-main);
-          border: 1px solid var(--glass-border);
-          margin-left: 1rem;
-        }
-
-        /* --- MODULES GRID --- */
-        .grid-3 {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2rem;
-        }
-        .card {
-          background: var(--glass-bg);
-          border: 1px solid var(--glass-border);
-          padding: 2.5rem;
-          border-radius: 16px;
-          backdrop-filter: blur(12px);
-          transition: all 0.3s ease;
-        }
-        .card:hover {
-          transform: translateY(-5px);
-          background: var(--card-hover);
-          border-color: var(--accent-secondary);
-        }
-        .icon {
-          font-size: 2rem;
-          margin-bottom: 1.5rem;
-          display: block;
-        }
-
-        /* --- PHASES (Timeline) --- */
-        .timeline {
-          position: relative;
-          max-width: 800px;
-          margin: 0 auto;
-        }
-        .timeline::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          top: 0;
-          height: 100%;
-          width: 2px;
-          background: linear-gradient(
-            to bottom,
-            var(--accent-secondary),
-            var(--accent-primary),
-            var(--accent-tertiary)
-          );
-        }
-        .phase {
-          margin-left: 2rem;
-          margin-bottom: 4rem;
-          position: relative;
-        }
-        .phase::before {
-          content: "";
-          position: absolute;
-          left: -2.6rem;
-          top: 0.5rem;
-          width: 1.2rem;
-          height: 1.2rem;
-          background: var(--bg-color);
-          border: 2px solid #fff;
-          border-radius: 50%;
-          z-index: 2;
-        }
-        .phase.active::before {
-          background: var(--accent-tertiary);
-          box-shadow: 0 0 15px var(--accent-tertiary);
-          border-color: var(--accent-tertiary);
-        }
-        .phase h4 {
-          font-size: 1.5rem;
-          color: #fff;
-          margin-bottom: 0.5rem;
-        }
-        .badge {
-          display: inline-block;
-          font-size: 0.8rem;
-          padding: 0.2rem 0.6rem;
-          border-radius: 4px;
-          margin-bottom: 1rem;
-          font-weight: 600;
-          letter-spacing: 0.05em;
-        }
-        .badge-green {
-          background: rgba(16, 185, 129, 0.2);
-          color: #34d399;
-        }
-        .badge-red {
-          background: rgba(244, 63, 94, 0.2);
-          color: #fb7185;
-        }
-
-        /* --- THE ASK --- */
-        .funding-box {
-          background: linear-gradient(
-            145deg,
-            rgba(124, 58, 237, 0.1),
-            rgba(0, 0, 0, 0)
-          );
-          border: 1px solid var(--accent-primary);
-          padding: 3rem;
-          border-radius: 16px;
-          text-align: center;
-          max-width: 800px;
-          margin: 0 auto;
-        }
-        .funding-highlight {
-          font-size: 2.5rem;
-          font-weight: 700;
-          color: #fff;
-          margin: 1rem 0;
-          display: block;
-        }
-        .progress-bar {
-          width: 100%;
-          height: 6px;
-          background: var(--glass-border);
-          margin: 2rem 0;
-          position: relative;
-          border-radius: 3px;
-          overflow: hidden;
-        }
-        .progress-fill {
-          position: absolute;
-          left: 0;
-          top: 0;
-          height: 100%;
-          width: 66%;
-          background: linear-gradient(
-            90deg,
-            var(--accent-secondary),
-            var(--accent-primary)
-          );
-        }
-
-        /* --- FOOTER --- */
-        footer {
-          padding: 4rem 0;
-          text-align: center;
-          border-top: 1px solid var(--glass-border);
-          font-size: 0.9rem;
-          color: var(--text-muted);
-        }
-
-        @media (max-width: 768px) {
-          h1 {
-            font-size: 2.5rem;
-          }
-          .hero {
-            min-height: auto;
-            padding-top: 8rem;
-          }
-          .timeline::before {
-            left: -10px;
-          }
-          .phase {
-            margin-left: 1rem;
-          }
-        }
-      </style>
-    </head>
-    <body>
-      <canvas id="canvas-wrap"></canvas>
-
-      <div class="container">
-        <section class="hero">
-          <div class="hero-tag">Project KYLN</div>
-          <h1>Kinetic Yield Learning Network</h1>
-          <p class="hero-desc">
-            An autonomous, multi-fidelity AI engine designed to discover novel
-            actinide chelators at chemical accuracy. Bridging the gap between
-            organic data abundance and relativistic f-block scarcity.
-          </p>
+    <section
+      id="actinides"
+      class="py-20 px-6 bg-gray-50 border-y border-gray-200"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <a href="#roadmap" class="btn">View Roadmap</a>
-            <a
-              href="https://github.com/reed-fenno/kyln"
-              class="btn btn-secondary"
-              >GitHub Repo</a
-            >
+            <h2 class="font-serif text-2xl text-charcoal mb-6">
+              Target Domain: 5f-Series
+            </h2>
+            <div class="grid grid-cols-7 gap-2 font-sans">
+              <button
+                onclick="selectElement(0)"
+                class="element-tile active border border-gray-300 bg-white p-3 rounded text-left relative h-24"
+              >
+                <div class="text-xs font-mono text-gray-500">90</div>
+                <div class="text-xl font-bold mt-1">Th</div>
+                <div class="text-[10px] text-gray-400 mt-1">Thorium</div>
+              </button>
+              <button
+                onclick="selectElement(1)"
+                class="element-tile border border-gray-300 bg-white p-3 rounded text-left relative h-24"
+              >
+                <div class="text-xs font-mono text-gray-500">91</div>
+                <div class="text-xl font-bold mt-1">Pa</div>
+                <div class="text-[10px] text-gray-400 mt-1">Protactinium</div>
+              </button>
+              <button
+                onclick="selectElement(2)"
+                class="element-tile border border-gray-300 bg-white p-3 rounded text-left relative h-24"
+              >
+                <div class="text-xs font-mono text-gray-500">92</div>
+                <div class="text-xl font-bold mt-1">U</div>
+                <div class="text-[10px] text-gray-400 mt-1">Uranium</div>
+              </button>
+              <button
+                onclick="selectElement(3)"
+                class="element-tile border border-gray-300 bg-white p-3 rounded text-left relative h-24"
+              >
+                <div class="text-xs font-mono text-gray-500">93</div>
+                <div class="text-xl font-bold mt-1">Np</div>
+                <div class="text-[10px] text-gray-400 mt-1">Neptunium</div>
+              </button>
+              <button
+                onclick="selectElement(4)"
+                class="element-tile border border-gray-300 bg-white p-3 rounded text-left relative h-24"
+              >
+                <div class="text-xs font-mono text-gray-500">94</div>
+                <div class="text-xl font-bold mt-1">Pu</div>
+                <div class="text-[10px] text-gray-400 mt-1">Plutonium</div>
+              </button>
+              <button
+                onclick="selectElement(5)"
+                class="element-tile border border-gray-300 bg-white p-3 rounded text-left relative h-24"
+              >
+                <div class="text-xs font-mono text-gray-500">95</div>
+                <div class="text-xl font-bold mt-1">Am</div>
+                <div class="text-[10px] text-gray-400 mt-1">Americium</div>
+              </button>
+              <button
+                onclick="selectElement(6)"
+                class="element-tile border border-gray-300 bg-white p-3 rounded text-left relative h-24"
+              >
+                <div class="text-xs font-mono text-gray-500">96</div>
+                <div class="text-xl font-bold mt-1">Cm</div>
+                <div class="text-[10px] text-gray-400 mt-1">Curium</div>
+              </button>
+            </div>
+            <p class="text-xs text-pencil mt-4 italic">
+              * Click tiles to view computational challenges.
+            </p>
           </div>
-        </section>
 
-        <section id="architecture">
-          <h3>The Architecture</h3>
-          <h2>Three Modules. One Loop.</h2>
-          <div class="grid-3">
-            <div class="card">
-              <span class="icon">🧠</span>
-              <h4>Kilonova</h4>
-              <p
-                style="
-                  font-size: 0.9rem;
-                  margin-top: 0.5rem;
-                  margin-bottom: 1rem;
-                  color: var(--accent-secondary);
-                "
+          <div
+            class="bg-white p-8 rounded-lg border border-gray-300 shadow-sm min-h-[300px] flex flex-col justify-center relative overflow-hidden"
+          >
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+              <svg
+                width="100"
+                height="100"
+                viewBox="0 0 100 100"
+                class="text-charcoal fill-current"
               >
-                The AI Engine
-              </p>
-              <p>
-                E(3)-equivariant graph neural networks (PaiNN) with
-                multi-fidelity embeddings. Learns atomic interactions from
-                organic foundations and transfers knowledge to actinides.
-              </p>
-            </div>
-            <div class="card">
-              <span class="icon">⚗️</span>
-              <h4>Forge</h4>
-              <p
-                style="
-                  font-size: 0.9rem;
-                  margin-top: 0.5rem;
-                  margin-bottom: 1rem;
-                  color: var(--accent-secondary);
-                "
-              >
-                The Generator
-              </p>
-              <p>
-                Evolutionary algorithms for ligand mutation and crossover.
-                Assembles 3D metal-ligand geometries using fragment-based design
-                (BRICS) and geometry filtering.
-              </p>
-            </div>
-            <div class="card">
-              <span class="icon">🔄</span>
-              <h4>Reactor</h4>
-              <p
-                style="
-                  font-size: 0.9rem;
-                  margin-top: 0.5rem;
-                  margin-bottom: 1rem;
-                  color: var(--accent-secondary);
-                "
-              >
-                The Orchestrator
-              </p>
-              <p>
-                Manages the active learning lifecycle. Uses uncertainty sampling
-                to select high-value candidates for DFT verification (ORCA) and
-                autonomous retraining.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section id="roadmap">
-          <h3>The Roadmap</h3>
-          <h2>From Foundation to Discovery</h2>
-
-          <div class="timeline">
-            <div class="phase">
-              <span class="badge badge-green">COMPLETED</span>
-              <h4>Phase 1: Foundation</h4>
-              <p>
-                Pre-training on 9M organic conformations (ANI-2x). The model
-                learns general chemical principles, forces, and invariance.
-              </p>
+                <path d="M50 0 L100 25 L100 75 L50 100 L0 75 L0 25 Z" />
+              </svg>
             </div>
 
-            <div class="phase">
-              <span class="badge badge-green">IN PROGRESS</span>
-              <h4>Phase 2: Transfer</h4>
-              <p>
-                Transfer surgery and fine-tuning on 86k transition metal
-                complexes (tmQM). Adapting the latent space from organic to
-                coordination chemistry.
-              </p>
+            <h3 id="el-name" class="font-serif text-3xl mb-2 text-charcoal">
+              Thorium
+            </h3>
+            <div class="text-sm font-mono text-cobalt mb-6" id="el-config">
+              [Rn] 6d² 7s²
             </div>
 
-            <div class="phase active">
-              <span class="badge badge-red">FUNDING REQUIRED</span>
-              <h4>Phase 3: Active Learning</h4>
-              <p>
-                The autonomous discovery loop for Actinides (U, Np, Pu). This
-                requires continuous retraining of the 5-member ensemble to drive
-                the uncertainty sampling.
-              </p>
-              <div
-                style="
-                  margin-top: 1rem;
-                  padding: 1rem;
-                  border-left: 3px solid var(--accent-tertiary);
-                  background: rgba(244, 63, 94, 0.05);
-                "
-              >
-                <strong>Bottleneck:</strong> Phase 3 requires a dedicated GPU
-                (RTX 4090) to run the Kilonova trainer in loop with the DFT
-                backend.
+            <div class="space-y-4">
+              <div>
+                <span
+                  class="text-xs font-bold uppercase text-gray-400 tracking-wider"
+                  >Challenge</span
+                >
+                <p id="el-challenge" class="text-sm text-charcoal">
+                  Standard DFT often fails due to near-degeneracy of 5f and 6d
+                  orbitals.
+                </p>
+              </div>
+              <div>
+                <span
+                  class="text-xs font-bold uppercase text-gray-400 tracking-wider"
+                  >KYLN Strategy</span
+                >
+                <p id="el-strategy" class="text-sm text-charcoal">
+                  Calibrated on experimental formation constants; focuses on
+                  Th(IV) coordination spheres.
+                </p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
 
-        <section id="funding">
-          <div class="funding-box">
-            <h3>Ignite Funding Goal</h3>
-            <span class="funding-highlight">Enable Autonomous Discovery</span>
-            <p>
-              I am a solo entreprenuer implementing this pipeline. In order to
-              continue with pushing the frontier of computational chemistry, I
-              need resources to fund model training.
-            </p>
-            <div class="progress-bar">
-              <div class="progress-fill"></div>
-            </div>
+    <section id="roadmap" class="py-20 px-6">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="font-serif text-3xl text-charcoal mb-12 text-center">
+          Development Roadmap
+        </h2>
+
+        <div class="relative border-l border-gray-300 ml-4 md:ml-0 space-y-12">
+          <div class="relative pl-8 md:pl-0">
             <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                font-size: 0.9rem;
-                color: var(--text-muted);
-              "
-            >
-              <span>Implementation</span>
-              <span style="color: #fff">Training Resources</span>
+              class="absolute -left-1.5 top-2 w-3 h-3 bg-gray-400 rounded-full border-2 border-white"
+            ></div>
+            <div class="md:grid md:grid-cols-5 md:gap-8">
+              <div class="col-span-1 md:text-right">
+                <span class="font-mono text-xs text-gray-400">Phase 1</span>
+              </div>
+              <div class="col-span-4">
+                <h3 class="font-serif text-lg font-bold text-gray-700">
+                  Foundation Pre-training
+                </h3>
+                <p class="text-sm text-gray-600 mt-2">
+                  Training KilonovaGNN on 9M organic conformations (ANI-2x).
+                  Learning general molecular physics and atomic interactions.
+                </p>
+                <span
+                  class="inline-block mt-2 text-xs font-mono text-green-600 bg-green-50 px-2 py-1 rounded"
+                  >Status: Complete</span
+                >
+              </div>
             </div>
           </div>
-        </section>
 
-        <footer>
-          <p>&copy; 2026 Project KYLN. Reed Fenno.</p>
-        </footer>
+          <div class="relative pl-8 md:pl-0">
+            <div
+              class="absolute -left-1.5 top-2 w-3 h-3 bg-cobalt rounded-full border-2 border-white"
+            ></div>
+            <div class="md:grid md:grid-cols-5 md:gap-8">
+              <div class="col-span-1 md:text-right">
+                <span class="font-mono text-xs text-cobalt">Phase 2</span>
+              </div>
+              <div class="col-span-4">
+                <h3 class="font-serif text-lg font-bold text-charcoal">
+                  Transfer Fine-tuning
+                </h3>
+                <p class="text-sm text-pencil mt-2">
+                  Adapting the foundation model to transition metals (tmQM).
+                  Solving the "Z-mismatch" via embedding surgery.
+                </p>
+                <span
+                  class="inline-block mt-2 text-xs font-mono text-cobalt bg-blue-50 px-2 py-1 rounded"
+                  >Status: In Progress</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="relative pl-8 md:pl-0">
+            <div
+              class="absolute -left-1.5 top-2 w-3 h-3 bg-white border-2 border-gray-300 rounded-full"
+            ></div>
+            <div class="md:grid md:grid-cols-5 md:gap-8">
+              <div class="col-span-1 md:text-right">
+                <span class="font-mono text-xs text-gray-400">Phase 3</span>
+              </div>
+              <div class="col-span-4">
+                <h3 class="font-serif text-lg font-bold text-gray-400">
+                  Autonomous Actinide Discovery
+                </h3>
+                <p class="text-sm text-gray-400 mt-2">
+                  The Reactor active learning loop. Generation, verification
+                  (ORCA/CASSCF), and retraining on relativistic systems.
+                </p>
+                <span
+                  class="inline-block mt-2 text-xs font-mono text-gray-400 border border-gray-200 px-2 py-1 rounded"
+                  >Status: Planned</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <script>
-        // Minimal script for "Molecular Network" background
-        const canvas = document.getElementById("canvas-wrap");
-        const ctx = canvas.getContext("2d");
-        let width, height;
-        let particles = [];
+    <footer class="bg-charcoal text-white py-12 px-6">
+      <div
+        class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center"
+      >
+        <div class="mb-6 md:mb-0">
+          <h4 class="font-serif text-xl mb-2">Project KYLN</h4>
+          <p class="text-xs text-gray-400 max-w-sm">
+            Researching the intersection of deep geometric learning and
+            relativistic quantum chemistry.
+          </p>
+        </div>
 
-        function resize() {
-          width = canvas.width = window.innerWidth;
-          height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener("resize", resize);
-        resize();
+        <div class="flex flex-col text-right">
+          <a
+            href="https://github.com/reedfenno"
+            class="text-sm hover:text-uranium-glow transition-colors mb-2"
+            >GitHub / reedfenno</a
+          >
+          <p class="text-xs text-gray-500 font-mono">
+            &copy; 2026 Reed Fenno. All Rights Reserved.<br />
+            Licensed under MIT (Code) & CC-BY (Data).
+          </p>
+        </div>
+      </div>
+    </footer>
 
-        class Particle {
-          constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.size = Math.random() * 2 + 1;
+    <script>
+      const elements = [
+        {
+          name: "Thorium",
+          symbol: "Th",
+          config: "[Rn] 6d² 7s²",
+          challenge:
+            "Often behaves like a Group 4 transition metal, but relativistic effects on 6d orbitals are non-negligible.",
+          strategy:
+            "Focus on Th(IV) hard-donor chelators (Hydroxypyridinones).",
+        },
+        {
+          name: "Protactinium",
+          symbol: "Pa",
+          config: "[Rn] 5f² 6d¹ 7s²",
+          challenge:
+            "Extremely prone to hydrolysis and colloid formation. Complex redox chemistry.",
+          strategy:
+            "Conservative force fields to prevent non-physical geometry explosions.",
+        },
+        {
+          name: "Uranium",
+          symbol: "U",
+          config: "[Rn] 5f³ 6d¹ 7s²",
+          challenge:
+            "Uranyl (UO₂²⁺) linear geometry dominates. Strong spin-orbit coupling.",
+          strategy:
+            "Phase 3 CI-Head trained to predict multi-reference character.",
+        },
+        {
+          name: "Neptunium",
+          symbol: "Np",
+          config: "[Rn] 5f⁴ 6d¹ 7s²",
+          challenge:
+            "Multiple stable oxidation states in solution make speciation prediction difficult.",
+          strategy:
+            "Ensemble Uncertainty Quantification to flag ambiguous redox states.",
+        },
+        {
+          name: "Plutonium",
+          symbol: "Pu",
+          config: "[Rn] 5f⁶ 7s²",
+          challenge:
+            "The 'Plutonium Puzzle': electrons are on the brink of localization vs delocalization.",
+          strategy: "High-fidelity CASSCF verification for top candidates.",
+        },
+        {
+          name: "Americium",
+          symbol: "Am",
+          config: "[Rn] 5f⁷ 7s²",
+          challenge: "Radioactivity and scarcity of experimental binding data.",
+          strategy: "Transfer learning from Lanthanide analogues (Europium).",
+        },
+        {
+          name: "Curium",
+          symbol: "Cm",
+          config: "[Rn] 5f⁷ 6d¹ 7s²",
+          challenge:
+            "Half-filled f-shell stability creates distinct coordination preferences.",
+          strategy:
+            "Standard DFT is reasonably effective here; used to calibrate baseline.",
+        },
+      ];
+
+      function selectElement(index) {
+        // Update UI State
+        document.querySelectorAll(".element-tile").forEach((el, i) => {
+          if (i === index) {
+            el.classList.add("active", "bg-white");
+            el.classList.remove("bg-white");
+          } else {
+            el.classList.remove("active");
+            el.classList.add("bg-white");
           }
-          update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-          }
-          draw() {
-            ctx.fillStyle = "rgba(100, 116, 139, 0.3)";
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
+        });
 
-        for (let i = 0; i < 60; i++) particles.push(new Particle());
+        // Update Content
+        const data = elements[index];
+        const nameEl = document.getElementById("el-name");
+        const configEl = document.getElementById("el-config");
+        const chalEl = document.getElementById("el-challenge");
+        const stratEl = document.getElementById("el-strategy");
 
-        function animate() {
-          ctx.clearRect(0, 0, width, height);
-          particles.forEach((p) => {
-            p.update();
-            p.draw();
-            particles.forEach((p2) => {
-              let dx = p.x - p2.x;
-              let dy = p.y - p2.y;
-              let dist = Math.sqrt(dx * dx + dy * dy);
-              if (dist < 150) {
-                ctx.strokeStyle = `rgba(100, 116, 139, ${0.1 - dist / 1500})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-                ctx.lineTo(p2.x, p2.y);
-                ctx.stroke();
-              }
-            });
-          });
-          requestAnimationFrame(animate);
-        }
-        animate();
-      </script>
-    </body>
-  </html>
+        // Simple fade animation effect
+        const panel = nameEl.parentElement;
+        panel.style.opacity = "0.5";
+
+        setTimeout(() => {
+          nameEl.textContent = data.name;
+          configEl.textContent = data.config;
+          chalEl.textContent = data.challenge;
+          stratEl.textContent = data.strategy;
+          panel.style.opacity = "1";
+        }, 150);
+      }
+    </script>
+  </body>
 </html>
