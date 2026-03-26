@@ -4,20 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KYLN | Next-Generation Radiopharmaceutical Chelators</title>
-    <meta name="description" content="Kyln uses AI-driven computational chemistry to discover novel chelators for targeted alpha therapy — Ac-225, Ra-223, and Pb-212." />
-    <meta property="og:title" content="KYLN | Next-Generation Radiopharmaceutical Chelators" />
-    <meta property="og:description" content="Kyln uses AI-driven computational chemistry to discover novel chelators for targeted alpha therapy — Ac-225, Ra-223, and Pb-212." />
+    <meta
+      name="description"
+      content="Kyln uses AI-driven computational chemistry to discover novel chelators for targeted alpha therapy — Ac-225, Ra-223, and Pb-212."
+    />
+    <meta
+      property="og:title"
+      content="KYLN | Next-Generation Radiopharmaceutical Chelators"
+    />
+    <meta
+      property="og:description"
+      content="Kyln uses AI-driven computational chemistry to discover novel chelators for targeted alpha therapy — Ac-225, Ra-223, and Pb-212."
+    />
     <meta property="og:type" content="website" />
+
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+      onload="
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+        })
+      "
+    ></script>
 
     <script>
       tailwind.config = {
@@ -27,9 +62,9 @@
               paper: "#FCFBFA",
               ink: "#1A202C",
               charcoal: "#0F172A",
-              "accent-alpha": "#2563EB",
+              "accent-alpha": "#1A365D",
               "accent-beta": "#059669",
-              cobalt: "#1E3A8A",
+              cobalt: "#1A365D",
               slate: "#64748B",
             },
             fontFamily: {
@@ -38,7 +73,8 @@
               mono: ["JetBrains Mono", "monospace"],
             },
             backgroundImage: {
-              "graph-paper": "linear-gradient(to right, rgba(100,116,139,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.06) 1px, transparent 1px)",
+              "graph-paper":
+                "linear-gradient(to right, rgba(100,116,139,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.06) 1px, transparent 1px)",
             },
           },
         },
@@ -47,84 +83,133 @@
 
     <style>
       body {
-        background-color: #FCFBFA;
-        color: #0F172A;
+        background-color: #fcfbfa;
+        color: #0f172a;
         background-size: 40px 40px;
       }
       .graph-bg {
-        background-image: linear-gradient(to right, rgba(100, 116, 139, 0.05) 1px, transparent 1px),
-                          linear-gradient(to bottom, rgba(100, 116, 139, 0.05) 1px, transparent 1px);
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(100, 116, 139, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(100, 116, 139, 0.05) 1px,
+            transparent 1px
+          );
         background-size: 24px 24px;
       }
 
       @keyframes slowSpin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
       @keyframes reverseSpin {
-        from { transform: rotate(360deg); }
-        to { transform: rotate(0deg); }
+        from {
+          transform: rotate(360deg);
+        }
+        to {
+          transform: rotate(0deg);
+        }
       }
-      .spin-slow { animation: slowSpin 40s linear infinite; }
-      .spin-reverse { animation: reverseSpin 50s linear infinite; }
+      .spin-slow {
+        animation: slowSpin 40s linear infinite;
+      }
+      .spin-reverse {
+        animation: reverseSpin 50s linear infinite;
+      }
 
       @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
       }
-      .animate-float { animation: float 7s ease-in-out infinite; }
+      .animate-float {
+        animation: float 7s ease-in-out infinite;
+      }
 
-      .notebook-entry, .data-card { transition: all 0.3s ease; }
-      .notebook-entry:hover, .data-card:hover {
+      .notebook-entry,
+      .data-card {
+        transition: all 0.3s ease;
+      }
+      .notebook-entry:hover,
+      .data-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.06);
       }
-      .pipeline-tile { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-      .pipeline-tile:hover { border-color: #2563EB; background-color: #F8FAFC; }
+      .pipeline-tile {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .pipeline-tile:hover {
+        border-color: #1a365d;
+        background-color: #f8fafc;
+      }
       .pipeline-tile.active {
-        border-color: #1E3A8A;
-        background-color: #EFF6FF;
-        box-shadow: inset 3px 0 0 0 #1E3A8A;
+        border-color: #1a365d;
+        background-color: #eff6ff;
+        box-shadow: inset 3px 0 0 0 #1a365d;
       }
 
       .data-card.active {
-        border-color: #2563EB;
-        background-color: #EFF6FF;
-        box-shadow: inset 3px 0 0 0 #2563EB;
+        border-color: #1a365d;
+        background-color: #eff6ff;
+        box-shadow: inset 3px 0 0 0 #1a365d;
       }
 
-      ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
-      ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
 
       .flow-arrow {
         display: flex;
         align-items: center;
-        color: #2563EB;
+        color: #1a365d;
         font-size: 1.5rem;
         flex-shrink: 0;
       }
       .cycle-arrow {
-        color: #94A3B8;
+        color: #94a3b8;
         font-size: 0.9rem;
       }
       .timeline-dot-complete {
-        width: 14px; height: 14px;
-        background-color: #2563EB;
+        width: 14px;
+        height: 14px;
+        background-color: #1a365d;
         border-radius: 50%;
         flex-shrink: 0;
       }
       .timeline-dot-inprogress {
-        width: 14px; height: 14px;
-        background: linear-gradient(to bottom, #2563EB 50%, #E2E8F0 50%);
+        width: 14px;
+        height: 14px;
+        background: linear-gradient(to bottom, #1a365d 50%, #e2e8f0 50%);
         border-radius: 50%;
-        border: 2px solid #2563EB;
+        border: 2px solid #1a365d;
         flex-shrink: 0;
       }
       .timeline-dot-upcoming {
-        width: 14px; height: 14px;
-        border: 2px solid #94A3B8;
+        width: 14px;
+        height: 14px;
+        border: 2px solid #94a3b8;
         border-radius: 50%;
         background: white;
         flex-shrink: 0;
@@ -132,71 +217,157 @@
       .timeline-line {
         flex: 1;
         height: 2px;
-        background-color: #E2E8F0;
+        background-color: #e2e8f0;
         position: relative;
       }
       .timeline-line-complete {
         flex: 1;
         height: 2px;
-        background-color: #2563EB;
+        background-color: #1a365d;
         position: relative;
       }
     </style>
   </head>
-  <body class="graph-bg min-h-screen flex flex-col font-sans selection:bg-accent-alpha selection:text-white">
-
+  <body
+    class="graph-bg min-h-screen flex flex-col font-sans selection:bg-accent-alpha selection:text-white"
+  >
     <!-- NAV -->
-    <nav class="fixed w-full z-50 bg-paper/90 backdrop-blur-md border-b border-gray-200">
-      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <nav
+      class="fixed w-full z-50 bg-paper/90 backdrop-blur-md border-b border-gray-200"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
         <div class="flex items-center space-x-3">
-          <div class="w-2.5 h-2.5 bg-accent-alpha rounded-sm rotate-45"></div>
-          <span class="font-serif font-bold text-lg tracking-tight text-charcoal">KYLN</span>
+          <img
+            src="icon.png"
+            style="height: 30px; width: auto; display: block"
+            alt="Kyln"
+          />
+          <span
+            class="font-serif font-bold text-lg tracking-tight text-charcoal"
+            >KYLN</span
+          >
         </div>
-        <div class="hidden md:flex space-x-8 text-xs font-mono font-medium text-slate">
-          <a href="#problem" class="hover:text-cobalt transition-colors">THE PROBLEM</a>
-          <a href="#validation" class="hover:text-cobalt transition-colors">PERFORMANCE</a>
-          <a href="#architecture" class="hover:text-cobalt transition-colors">ARCHITECTURE</a>
-          <a href="#publications" class="hover:text-cobalt transition-colors">PUBLICATIONS</a>
-          <a href="#roadmap" class="hover:text-cobalt transition-colors">ROADMAP</a>
+        <div
+          class="hidden md:flex space-x-8 text-xs font-mono font-medium text-slate"
+        >
+          <a href="#problem" class="hover:text-cobalt transition-colors"
+            >THE PROBLEM</a
+          >
+          <a href="#validation" class="hover:text-cobalt transition-colors"
+            >PERFORMANCE</a
+          >
+          <a href="#architecture" class="hover:text-cobalt transition-colors"
+            >ARCHITECTURE</a
+          >
+          <a href="#publications" class="hover:text-cobalt transition-colors"
+            >PUBLICATIONS</a
+          >
+          <a href="#roadmap" class="hover:text-cobalt transition-colors"
+            >ROADMAP</a
+          >
         </div>
       </div>
     </nav>
 
     <!-- HERO -->
-    <header class="relative pt-32 pb-24 md:pt-48 md:pb-36 px-6 overflow-hidden flex items-center justify-center min-h-[85vh]">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none opacity-20 flex items-center justify-center">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full absolute spin-slow text-slate">
-          <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="4 6"/>
-          <ellipse cx="100" cy="100" rx="90" ry="30" fill="none" stroke="currentColor" stroke-width="0.3" transform="rotate(30 100 100)" />
+    <header
+      class="relative pt-32 pb-24 md:pt-48 md:pb-36 px-6 overflow-hidden flex items-center justify-center min-h-[85vh]"
+    >
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none opacity-20 flex items-center justify-center"
+      >
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-full h-full absolute spin-slow text-slate"
+        >
+          <circle
+            cx="100"
+            cy="100"
+            r="80"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.3"
+            stroke-dasharray="4 6"
+          />
+          <ellipse
+            cx="100"
+            cy="100"
+            rx="90"
+            ry="30"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.3"
+            transform="rotate(30 100 100)"
+          />
         </svg>
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full absolute spin-reverse text-accent-alpha opacity-50">
-          <ellipse cx="100" cy="100" rx="90" ry="30" fill="none" stroke="currentColor" stroke-width="0.3" transform="rotate(-60 100 100)" />
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-full h-full absolute spin-reverse text-accent-alpha opacity-50"
+        >
+          <ellipse
+            cx="100"
+            cy="100"
+            rx="90"
+            ry="30"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.3"
+            transform="rotate(-60 100 100)"
+          />
         </svg>
       </div>
 
       <div class="max-w-4xl mx-auto text-center relative z-10 animate-float">
-        <div class="inline-block mb-6 px-4 py-1.5 border border-slate/20 rounded-full bg-white/70 backdrop-blur-sm text-cobalt text-xs font-mono tracking-widest uppercase shadow-sm">
+        <div
+          class="inline-block mb-6 px-4 py-1.5 border border-slate/20 rounded-full bg-white/70 backdrop-blur-sm text-cobalt text-xs font-mono tracking-widest uppercase shadow-sm"
+        >
           Targeted Alpha Therapy
         </div>
-        <h1 class="font-serif text-5xl md:text-7xl text-charcoal mb-6 leading-[1.1] tracking-tight">
+        <h1
+          class="font-serif text-5xl md:text-7xl text-charcoal mb-6 leading-[1.1] tracking-tight"
+        >
           The $9B market has moved.<br />
           <span class="italic text-accent-alpha">The chemistry hasn't.</span>
         </h1>
-        <p class="text-lg md:text-xl text-slate max-w-2xl mx-auto leading-relaxed mb-12">
-          Targeted alpha therapy is one of oncology's most promising frontiers — but the molecular container that carries the radioactive payload through the bloodstream remains an unsolved problem. Kyln is building the AI engine to solve it.
+        <p
+          class="text-lg md:text-xl text-slate max-w-2xl mx-auto leading-relaxed mb-12"
+        >
+          Targeted alpha therapy is one of oncology's most promising frontiers —
+          but the molecular container that carries the radioactive payload
+          through the bloodstream remains an unsolved problem. Kyln is building
+          the AI engine to solve it.
         </p>
 
         <div class="flex flex-wrap justify-center gap-6 md:gap-12">
-          <div class="text-left font-mono text-xs text-slate border-l-2 border-accent-alpha pl-4">
-            <span class="block text-charcoal font-bold uppercase tracking-wide mb-1">Target Isotopes</span>
+          <div
+            class="text-left font-mono text-xs text-slate border-l-2 border-accent-alpha pl-4"
+          >
+            <span
+              class="block text-charcoal font-bold uppercase tracking-wide mb-1"
+              >Target Isotopes</span
+            >
             Ac-225 &nbsp;|&nbsp; Ra-223 &nbsp;|&nbsp; Pb-212
           </div>
-          <div class="text-left font-mono text-xs text-slate border-l-2 border-accent-beta pl-4">
-            <span class="block text-charcoal font-bold uppercase tracking-wide mb-1">Validation Precision</span>
+          <div
+            class="text-left font-mono text-xs text-slate border-l-2 border-accent-beta pl-4"
+          >
+            <span
+              class="block text-charcoal font-bold uppercase tracking-wide mb-1"
+              >Validation Precision</span
+            >
             6.64 meV/atom MAE
           </div>
-          <div class="text-left font-mono text-xs text-slate border-l-2 border-cobalt pl-4">
-            <span class="block text-charcoal font-bold uppercase tracking-wide mb-1">Methodology</span>
+          <div
+            class="text-left font-mono text-xs text-slate border-l-2 border-cobalt pl-4"
+          >
+            <span
+              class="block text-charcoal font-bold uppercase tracking-wide mb-1"
+              >Methodology</span
+            >
             AI-Driven Quantum Chemistry
           </div>
         </div>
@@ -206,13 +377,28 @@
     <!-- ACQUISITION STRIP -->
     <div class="bg-charcoal border-y border-gray-700 py-5 px-6">
       <div class="max-w-6xl mx-auto">
-        <div class="text-xs font-mono text-gray-400 uppercase tracking-widest text-center mb-3">$9B+ in radiopharmaceutical acquisitions &mdash; 2023&ndash;2025</div>
-        <div class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 text-xs font-mono">
-          <span class="text-gray-300">BMS &rarr; RayzeBio <span class="text-accent-alpha font-bold">$4.1B</span></span>
+        <div
+          class="text-xs font-mono text-gray-400 uppercase tracking-widest text-center mb-3"
+        >
+          $9B+ in radiopharmaceutical acquisitions &mdash; 2023&ndash;2025
+        </div>
+        <div
+          class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 text-xs font-mono"
+        >
+          <span class="text-gray-300"
+            >BMS &rarr; RayzeBio
+            <span class="text-accent-alpha font-bold">$4.1B</span></span
+          >
           <span class="text-gray-600 hidden md:inline">|</span>
-          <span class="text-gray-300">AstraZeneca &rarr; Fusion Pharma <span class="text-accent-alpha font-bold">$2.4B</span></span>
+          <span class="text-gray-300"
+            >AstraZeneca &rarr; Fusion Pharma
+            <span class="text-accent-alpha font-bold">$2.4B</span></span
+          >
           <span class="text-gray-600 hidden md:inline">|</span>
-          <span class="text-gray-300">Eli Lilly &rarr; POINT BioPharma <span class="text-accent-alpha font-bold">$1.4B</span></span>
+          <span class="text-gray-300"
+            >Eli Lilly &rarr; POINT BioPharma
+            <span class="text-accent-alpha font-bold">$1.4B</span></span
+          >
         </div>
       </div>
     </div>
@@ -221,48 +407,88 @@
     <section id="problem" class="py-24 px-6 bg-white border-b border-gray-200">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="font-serif text-3xl text-charcoal mb-4">Three Jobs, One Problem</h2>
-          <p class="text-sm text-slate font-mono max-w-xl mx-auto">Every targeted alpha therapy drug is a three-part delivery system.</p>
+          <h2 class="font-serif text-3xl text-charcoal mb-4">
+            Three Jobs, One Problem
+          </h2>
+          <p class="text-sm text-slate font-mono max-w-xl mx-auto">
+            Every targeted alpha therapy drug is a three-part delivery system.
+          </p>
         </div>
 
         <!-- Flowchart -->
-        <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 mb-8">
+        <div
+          class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 mb-8"
+        >
           <!-- Box 1 -->
-          <div class="flex-1 max-w-xs bg-paper border border-gray-200 rounded-sm p-6 text-center shadow-sm">
-            <div class="w-10 h-10 mx-auto mb-4 rounded-sm bg-gray-100 border border-gray-200 flex items-center justify-center">
+          <div
+            class="flex-1 max-w-xs bg-paper border border-gray-200 rounded-sm p-6 text-center shadow-sm"
+          >
+            <div
+              class="w-10 h-10 mx-auto mb-4 rounded-sm bg-gray-100 border border-gray-200 flex items-center justify-center"
+            >
               <span class="font-mono text-xs font-bold text-slate">01</span>
             </div>
-            <h3 class="font-serif text-lg text-charcoal mb-2">Targeting Vector</h3>
-            <p class="text-xs text-slate font-mono leading-relaxed">Finds the cancer cell — an antibody or small molecule that homes to tumor-specific antigens</p>
+            <h3 class="font-serif text-lg text-charcoal mb-2">
+              Targeting Vector
+            </h3>
+            <p class="text-xs text-slate font-mono leading-relaxed">
+              Finds the cancer cell — an antibody or small molecule that homes
+              to tumor-specific antigens
+            </p>
           </div>
           <div class="flow-arrow px-4 hidden md:flex">&rarr;</div>
-          <div class="flow-arrow md:hidden text-2xl text-accent-alpha">&darr;</div>
+          <div class="flow-arrow md:hidden text-2xl text-accent-alpha">
+            &darr;
+          </div>
 
           <!-- Box 2 — highlighted as the bottleneck -->
-          <div class="flex-1 max-w-xs bg-blue-50 border-2 border-accent-alpha rounded-sm p-6 text-center shadow-md relative">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-alpha text-white text-[10px] font-mono font-bold px-3 py-0.5 rounded-full uppercase tracking-widest whitespace-nowrap">The Bottleneck</div>
-            <div class="w-10 h-10 mx-auto mb-4 rounded-sm bg-accent-alpha flex items-center justify-center">
+          <div
+            class="flex-1 max-w-xs bg-blue-50 border-2 border-accent-alpha rounded-sm p-6 text-center shadow-md relative"
+          >
+            <div
+              class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-alpha text-white text-[10px] font-mono font-bold px-3 py-0.5 rounded-full uppercase tracking-widest whitespace-nowrap"
+            >
+              The Bottleneck
+            </div>
+            <div
+              class="w-10 h-10 mx-auto mb-4 rounded-sm bg-accent-alpha flex items-center justify-center"
+            >
               <span class="font-mono text-xs font-bold text-white">02</span>
             </div>
             <h3 class="font-serif text-lg text-cobalt mb-2">Chelator</h3>
-            <p class="text-xs text-slate font-mono leading-relaxed">Carries the radioactive payload safely through the bloodstream without leaking it into healthy tissue</p>
+            <p class="text-xs text-slate font-mono leading-relaxed">
+              Carries the radioactive payload safely through the bloodstream
+              without leaking it into healthy tissue
+            </p>
           </div>
           <div class="flow-arrow px-4 hidden md:flex">&rarr;</div>
-          <div class="flow-arrow md:hidden text-2xl text-accent-alpha">&darr;</div>
+          <div class="flow-arrow md:hidden text-2xl text-accent-alpha">
+            &darr;
+          </div>
 
           <!-- Box 3 -->
-          <div class="flex-1 max-w-xs bg-paper border border-gray-200 rounded-sm p-6 text-center shadow-sm">
-            <div class="w-10 h-10 mx-auto mb-4 rounded-sm bg-gray-100 border border-gray-200 flex items-center justify-center">
+          <div
+            class="flex-1 max-w-xs bg-paper border border-gray-200 rounded-sm p-6 text-center shadow-sm"
+          >
+            <div
+              class="w-10 h-10 mx-auto mb-4 rounded-sm bg-gray-100 border border-gray-200 flex items-center justify-center"
+            >
               <span class="font-mono text-xs font-bold text-slate">03</span>
             </div>
             <h3 class="font-serif text-lg text-charcoal mb-2">Radioisotope</h3>
-            <p class="text-xs text-slate font-mono leading-relaxed">Treats the cancer cell from within — high-energy alpha particles that destroy DNA at close range</p>
+            <p class="text-xs text-slate font-mono leading-relaxed">
+              Treats the cancer cell from within — high-energy alpha particles
+              that destroy DNA at close range
+            </p>
           </div>
         </div>
 
         <!-- Subtitle under flowchart -->
-        <p class="text-center text-sm text-slate font-mono italic border-t border-gray-100 pt-8 mb-16 max-w-2xl mx-auto">
-          The field has solved the first and third. The second remains the bottleneck.
+        <p
+          class="text-center text-sm text-slate font-mono italic border-t border-gray-100 pt-8 mb-16 max-w-2xl mx-auto"
+        >
+          The field has solved the first and third. The second remains the
+          bottleneck.
         </p>
 
         <!-- Before / After comparison -->
@@ -271,47 +497,110 @@
           <div class="bg-paper border border-gray-200 rounded-sm p-8 shadow-sm">
             <div class="flex items-center gap-3 mb-6">
               <div class="w-2 h-2 rounded-full bg-gray-400"></div>
-              <h4 class="font-mono text-xs font-bold text-slate uppercase tracking-widest">Today &mdash; Trial and Error</h4>
+              <h4
+                class="font-mono text-xs font-bold text-slate uppercase tracking-widest"
+              >
+                Today &mdash; Trial and Error
+              </h4>
             </div>
             <div class="flex flex-col items-center gap-0">
-              <div class="w-full bg-white border border-gray-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-charcoal shadow-sm">Synthesize</div>
-              <div class="flex items-center justify-center w-full py-1 text-gray-400 text-xs font-mono gap-2">
+              <div
+                class="w-full bg-white border border-gray-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-charcoal shadow-sm"
+              >
+                Synthesize
+              </div>
+              <div
+                class="flex items-center justify-center w-full py-1 text-gray-400 text-xs font-mono gap-2"
+              >
                 <span class="text-gray-300">&darr;</span>
               </div>
-              <div class="w-full bg-white border border-gray-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-charcoal shadow-sm">Test</div>
-              <div class="flex items-center justify-center w-full py-1 text-gray-400 text-xs font-mono gap-2">
+              <div
+                class="w-full bg-white border border-gray-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-charcoal shadow-sm"
+              >
+                Test
+              </div>
+              <div
+                class="flex items-center justify-center w-full py-1 text-gray-400 text-xs font-mono gap-2"
+              >
                 <span class="text-gray-300">&darr;</span>
               </div>
-              <div class="w-full bg-red-50 border border-red-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-red-700 shadow-sm">Fail</div>
-              <div class="flex items-center justify-between w-full mt-1 relative">
-                <div class="flex-1 border-l border-b border-gray-300 h-6 rounded-bl-sm ml-8"></div>
-                <div class="text-[10px] font-mono text-gray-400 px-2 whitespace-nowrap">&larr; Repeat &rarr;</div>
-                <div class="flex-1 border-r border-b border-gray-300 h-6 rounded-br-sm mr-8"></div>
+              <div
+                class="w-full bg-red-50 border border-red-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-red-700 shadow-sm"
+              >
+                Fail
               </div>
-              <div class="w-full bg-white border border-gray-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-charcoal shadow-sm mt-1">Synthesize Again</div>
+              <div
+                class="flex items-center justify-between w-full mt-1 relative"
+              >
+                <div
+                  class="flex-1 border-l border-b border-gray-300 h-6 rounded-bl-sm ml-8"
+                ></div>
+                <div
+                  class="text-[10px] font-mono text-gray-400 px-2 whitespace-nowrap"
+                >
+                  &larr; Repeat &rarr;
+                </div>
+                <div
+                  class="flex-1 border-r border-b border-gray-300 h-6 rounded-br-sm mr-8"
+                ></div>
+              </div>
+              <div
+                class="w-full bg-white border border-gray-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-charcoal shadow-sm mt-1"
+              >
+                Synthesize Again
+              </div>
             </div>
-            <p class="text-[10px] text-slate font-mono mt-6 text-center italic">Months to years per candidate. Most fail in vivo.</p>
+            <p class="text-[10px] text-slate font-mono mt-6 text-center italic">
+              Months to years per candidate. Most fail in vivo.
+            </p>
           </div>
 
           <!-- RIGHT: The Kyln Approach -->
-          <div class="bg-blue-50 border border-blue-200 rounded-sm p-8 shadow-sm relative overflow-hidden">
+          <div
+            class="bg-blue-50 border border-blue-200 rounded-sm p-8 shadow-sm relative overflow-hidden"
+          >
             <div class="absolute top-0 left-0 w-1 h-full bg-accent-alpha"></div>
             <div class="flex items-center gap-3 mb-6 ml-2">
               <div class="w-2 h-2 rounded-full bg-accent-alpha"></div>
-              <h4 class="font-mono text-xs font-bold text-accent-alpha uppercase tracking-widest">The Kyln Approach</h4>
+              <h4
+                class="font-mono text-xs font-bold text-accent-alpha uppercase tracking-widest"
+              >
+                The Kyln Approach
+              </h4>
             </div>
             <div class="flex flex-col items-center gap-0 ml-2">
-              <div class="w-full bg-white border border-blue-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-cobalt shadow-sm font-bold">AI Designs Candidates</div>
-              <div class="flex items-center justify-center w-full py-1 text-accent-alpha text-xs font-mono gap-1">
+              <div
+                class="w-full bg-white border border-blue-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-cobalt shadow-sm font-bold"
+              >
+                AI Designs Candidates
+              </div>
+              <div
+                class="flex items-center justify-center w-full py-1 text-accent-alpha text-xs font-mono gap-1"
+              >
                 <span>&darr;</span>
               </div>
-              <div class="w-full bg-white border border-blue-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-cobalt shadow-sm font-bold">Quantum Simulation Validates</div>
-              <div class="flex items-center justify-center w-full py-1 text-accent-alpha text-xs font-mono gap-1">
+              <div
+                class="w-full bg-white border border-blue-200 rounded-sm px-5 py-3 text-center text-sm font-mono text-cobalt shadow-sm font-bold"
+              >
+                Quantum Simulation Validates
+              </div>
+              <div
+                class="flex items-center justify-center w-full py-1 text-accent-alpha text-xs font-mono gap-1"
+              >
                 <span>&darr;</span>
               </div>
-              <div class="w-full bg-accent-alpha border border-cobalt rounded-sm px-5 py-3 text-center text-sm font-mono text-white shadow-sm font-bold">Synthesize Only the Best</div>
+              <div
+                class="w-full bg-accent-alpha border border-cobalt rounded-sm px-5 py-3 text-center text-sm font-mono text-white shadow-sm font-bold"
+              >
+                Synthesize Only the Best
+              </div>
             </div>
-            <p class="text-[10px] text-accent-alpha font-mono mt-6 text-center italic ml-2">Orders of magnitude faster. Only validated candidates reach the lab.</p>
+            <p
+              class="text-[10px] text-accent-alpha font-mono mt-6 text-center italic ml-2"
+            >
+              Orders of magnitude faster. Only validated candidates reach the
+              lab.
+            </p>
           </div>
         </div>
       </div>
@@ -320,42 +609,93 @@
     <!-- THESIS / THE CHELATION BOTTLENECK -->
     <section id="thesis" class="py-24 px-6 bg-white border-y border-gray-200">
       <div class="max-w-6xl mx-auto">
-        <div class="flex items-end justify-between mb-12 border-b border-gray-200 pb-4">
-          <h2 class="font-serif text-3xl text-charcoal">The Chelation Bottleneck</h2>
+        <div
+          class="flex items-end justify-between mb-12 border-b border-gray-200 pb-4"
+        >
+          <h2 class="font-serif text-3xl text-charcoal">
+            The Chelation Bottleneck
+          </h2>
           <span class="font-mono text-xs text-slate">Research Thesis</span>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 mb-16">
-          <article class="notebook-entry p-8 bg-paper border border-gray-100 rounded-sm relative">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 to-gray-300"></div>
-            <h3 class="font-mono text-xs font-bold text-slate mb-3 uppercase tracking-wider">01. The Clinical Problem</h3>
-            <h4 class="font-serif text-xl mb-4 text-charcoal">Legacy Chemistry</h4>
+          <article
+            class="notebook-entry p-8 bg-paper border border-gray-100 rounded-sm relative"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 to-gray-300"
+            ></div>
+            <h3
+              class="font-mono text-xs font-bold text-slate mb-3 uppercase tracking-wider"
+            >
+              01. The Clinical Problem
+            </h3>
+            <h4 class="font-serif text-xl mb-4 text-charcoal">
+              Legacy Chemistry
+            </h4>
             <p class="text-sm text-slate leading-relaxed mb-4">
-              Targeted Alpha Therapy (TAT) delivers unmatched clinical potency — high-energy alpha particles that obliterate tumor DNA within a few cell-widths. Despite this massive therapeutic advantage, the field still relies on chelators that were never designed for the job. Non-specific geometries lead to in vivo instability, transchelation, and off-target toxicity.
+              Targeted Alpha Therapy (TAT) delivers unmatched clinical potency —
+              high-energy alpha particles that obliterate tumor DNA within a few
+              cell-widths. Despite this massive therapeutic advantage, the field
+              still relies on chelators that were never designed for the job.
+              Non-specific geometries lead to in vivo instability,
+              transchelation, and off-target toxicity.
             </p>
           </article>
 
-          <article class="notebook-entry p-8 bg-paper border border-gray-100 rounded-sm relative">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-alpha to-blue-400"></div>
-            <h3 class="font-mono text-xs font-bold text-accent-alpha mb-3 uppercase tracking-wider">02. The Physical Challenge</h3>
-            <h4 class="font-serif text-xl mb-4 text-charcoal">Extreme Chemistry</h4>
+          <article
+            class="notebook-entry p-8 bg-paper border border-gray-100 rounded-sm relative"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-alpha to-blue-400"
+            ></div>
+            <h3
+              class="font-mono text-xs font-bold text-accent-alpha mb-3 uppercase tracking-wider"
+            >
+              02. The Physical Challenge
+            </h3>
+            <h4 class="font-serif text-xl mb-4 text-charcoal">
+              Extreme Chemistry
+            </h4>
             <p class="text-sm text-slate leading-relaxed mb-4">
-              Designing containers for heavy radioactive ions involves chemistry that no standard tool handles well. The atoms are massive, their electronic structures exotic, and the physics of how they bind to a chelator requires computationally expensive quantum mechanical modeling — too slow for drug discovery timelines.
+              Designing containers for heavy radioactive ions involves chemistry
+              that no standard tool handles well. The atoms are massive, their
+              electronic structures exotic, and the physics of how they bind to
+              a chelator requires computationally expensive quantum mechanical
+              modeling — too slow for drug discovery timelines.
             </p>
           </article>
 
-          <article class="notebook-entry p-8 bg-paper border border-gray-100 rounded-sm relative">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-beta to-emerald-400"></div>
-            <h3 class="font-mono text-xs font-bold text-accent-beta mb-3 uppercase tracking-wider">03. The Kyln Solution</h3>
-            <h4 class="font-serif text-xl mb-4 text-charcoal">Closed-Loop Discovery</h4>
+          <article
+            class="notebook-entry p-8 bg-paper border border-gray-100 rounded-sm relative"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-beta to-emerald-400"
+            ></div>
+            <h3
+              class="font-mono text-xs font-bold text-accent-beta mb-3 uppercase tracking-wider"
+            >
+              03. The Kyln Solution
+            </h3>
+            <h4 class="font-serif text-xl mb-4 text-charcoal">
+              Closed-Loop Discovery
+            </h4>
             <p class="text-sm text-slate leading-relaxed mb-4">
-              Kyln maps a proprietary AI engine trained on quantum-mechanical data to a continuous candidate generation and verification loop. The system autonomously designs, evaluates, and ranks macrocyclic chelator candidates at orders of magnitude faster than quantum mechanical simulation — without sacrificing physical accuracy.
+              Kyln maps a proprietary AI engine trained on quantum-mechanical
+              data to a continuous candidate generation and verification loop.
+              The system autonomously designs, evaluates, and ranks macrocyclic
+              chelator candidates at orders of magnitude faster than quantum
+              mechanical simulation — without sacrificing physical accuracy.
             </p>
           </article>
         </div>
 
-        <div class="bg-white border border-gray-200 p-8 md:p-12 rounded-sm relative overflow-hidden shadow-sm">
-          <div class="absolute bottom-0 left-0 w-full h-full bg-blue-500 opacity-10 blur-3xl rounded-full translate-y-2/3 pointer-events-none"></div>
+        <div
+          class="bg-white border border-gray-200 p-8 md:p-12 rounded-sm relative overflow-hidden shadow-sm"
+        >
+          <div
+            class="absolute bottom-0 left-0 w-full h-full bg-blue-500 opacity-10 blur-3xl rounded-full translate-y-2/3 pointer-events-none"
+          ></div>
           <h3 class="font-serif text-2xl mb-4 relative z-10 text-charcoal">
             The Scale of Chemical Space
           </h3>
@@ -363,11 +703,16 @@
             Discovering optimal chelators is a profound search problem. For a
             20-membered macrocycle with mixed N/O/S donors, the combinatorial
             space of possible highly-strained scaffolds exceeds
-            <strong class="text-accent-alpha text-xl ml-1 mr-1">10<sup>15</sup></strong>.
-            Traditional screening utilizing functional-grade Density Functional Theory (DFT)
-            to map the potential energy surface of these massive complexes would require
-            centuries of compute. Kyln evaluates physically constrained candidates at
-            <strong class="text-accent-alpha ml-1 mr-1">orders of magnitude faster than quantum mechanical simulation</strong>
+            <strong class="text-accent-alpha text-xl ml-1 mr-1"
+              >10<sup>15</sup></strong
+            >. Traditional screening utilizing functional-grade Density
+            Functional Theory (DFT) to map the potential energy surface of these
+            massive complexes would require centuries of compute. Kyln evaluates
+            physically constrained candidates at
+            <strong class="text-accent-alpha ml-1 mr-1"
+              >orders of magnitude faster than quantum mechanical
+              simulation</strong
+            >
             while maintaining sub-kcal/mol fidelity.
           </p>
         </div>
@@ -377,310 +722,652 @@
     <!-- PERFORMANCE / VALIDATION -->
     <section id="validation" class="py-24 px-6 bg-paper">
       <div class="max-w-6xl mx-auto">
-        <div class="flex flex-col lg:flex-row items-stretch justify-between gap-12">
-
+        <div
+          class="flex flex-col lg:flex-row items-stretch justify-between gap-12"
+        >
           <div class="w-full lg:w-5/12 flex flex-col justify-center">
-            <h2 class="font-serif text-3xl text-charcoal mb-6">Model Validation &amp; Precision</h2>
+            <h2 class="font-serif text-3xl text-charcoal mb-6">
+              Model Validation &amp; Precision
+            </h2>
             <p class="text-sm text-slate leading-relaxed mb-6">
-              To reliably design novel chelators, a computational engine must predict binding energetics with extreme precision. The universally accepted threshold for "chemical accuracy" in computational chemistry is 1 kcal/mol, which equates to roughly 43.4 meV.
+              To reliably design novel chelators, a computational engine must
+              predict binding energetics with extreme precision. The universally
+              accepted threshold for "chemical accuracy" in computational
+              chemistry is 1 kcal/mol, which equates to roughly 43.4 meV.
             </p>
             <p class="text-sm text-slate leading-relaxed mb-6">
-              Evaluated against a strict hold-out validation set of unseen metal-ligand complexes, the Kyln AI engine achieves a Mean Absolute Error (MAE) of <strong>6.64 meV/atom</strong> — securing true first-principles molecular design capability without the computational tax of raw quantum mechanics.
+              Evaluated against a strict hold-out validation set of unseen
+              metal-ligand complexes, the Kyln AI engine achieves a Mean
+              Absolute Error (MAE) of <strong>6.64 meV/atom</strong> — securing
+              true first-principles molecular design capability without the
+              computational tax of raw quantum mechanics.
             </p>
             <p class="text-sm text-slate leading-relaxed mb-8">
-              Actinide-specific validation data is withheld pending patent filing.
+              Actinide-specific validation data is withheld pending patent
+              filing.
             </p>
 
             <div class="grid grid-cols-2 gap-4 border-t border-gray-200 pt-6">
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Architecture</div>
-                <div class="text-sm font-bold text-charcoal">Proprietary Equivariant GNN</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Architecture
+                </div>
+                <div class="text-sm font-bold text-charcoal">
+                  Proprietary Equivariant GNN
+                </div>
               </div>
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Parameters</div>
-                <div class="text-sm font-bold text-charcoal">Deep Ensemble Architecture</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Parameters
+                </div>
+                <div class="text-sm font-bold text-charcoal">
+                  Deep Ensemble Architecture
+                </div>
               </div>
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Training Set Size</div>
-                <div class="text-sm font-bold text-charcoal">&gt;200k QM Complexes</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Training Set Size
+                </div>
+                <div class="text-sm font-bold text-charcoal">
+                  &gt;200k QM Complexes
+                </div>
               </div>
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Inference Throughput</div>
-                <div class="text-sm font-bold text-charcoal">~120 molecules/sec</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Inference Throughput
+                </div>
+                <div class="text-sm font-bold text-charcoal">
+                  ~120 molecules/sec
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="w-full lg:w-7/12 bg-white p-8 border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-sm flex flex-col justify-center">
-            <div class="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
-              <h4 class="font-mono text-xs font-bold text-slate uppercase tracking-widest">Mean Absolute Error (MAE)</h4>
-              <div class="flex items-center text-accent-alpha text-xs font-bold bg-blue-50 px-3 py-1 rounded-full">
+          <div
+            class="w-full lg:w-7/12 bg-white p-8 border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-sm flex flex-col justify-center"
+          >
+            <div
+              class="flex items-center justify-between mb-8 border-b border-gray-100 pb-4"
+            >
+              <h4
+                class="font-mono text-xs font-bold text-slate uppercase tracking-widest"
+              >
+                Mean Absolute Error (MAE)
+              </h4>
+              <div
+                class="flex items-center text-accent-alpha text-xs font-bold bg-blue-50 px-3 py-1 rounded-full"
+              >
                 <span class="mr-1">&darr;</span> Lower is Better
               </div>
             </div>
 
             <div class="flex flex-col gap-8">
               <div>
-                <div class="flex justify-between text-xs font-mono text-slate mb-2">
+                <div
+                  class="flex justify-between text-xs font-mono text-slate mb-2"
+                >
                   <span>Target Ceiling: Chemical Accuracy</span>
                   <span class="font-bold">43.4 meV/atom</span>
                 </div>
-                <div class="w-full bg-gray-100 rounded-sm h-8 overflow-hidden relative border border-gray-200">
+                <div
+                  class="w-full bg-gray-100 rounded-sm h-8 overflow-hidden relative border border-gray-200"
+                >
                   <div class="bg-gray-300 h-full" style="width: 100%"></div>
                 </div>
               </div>
 
               <div>
-                <div class="flex justify-between text-xs font-mono text-accent-alpha font-bold mb-2">
+                <div
+                  class="flex justify-between text-xs font-mono text-accent-alpha font-bold mb-2"
+                >
                   <span>Kyln Engine</span>
                   <span>6.64 meV/atom</span>
                 </div>
-                <div class="w-full bg-blue-50 rounded-sm h-8 relative border border-blue-100">
-                  <div class="bg-accent-alpha h-full rounded-sm" style="width: 15.3%"></div>
-                  <div class="absolute top-0 bottom-0 border-l-2 border-dashed border-gray-400" style="left: 100%"></div>
+                <div
+                  class="w-full bg-blue-50 rounded-sm h-8 relative border border-blue-100"
+                >
+                  <div
+                    class="bg-accent-alpha h-full rounded-sm"
+                    style="width: 15.3%"
+                  ></div>
+                  <div
+                    class="absolute top-0 bottom-0 border-l-2 border-dashed border-gray-400"
+                    style="left: 100%"
+                  ></div>
                 </div>
               </div>
             </div>
 
-            <p class="text-[10px] text-gray-400 font-mono mt-8 text-right">Validation evaluated via high-throughput single-GPU inference.</p>
+            <p class="text-[10px] text-gray-400 font-mono mt-8 text-right">
+              Validation evaluated via high-throughput single-GPU inference.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- DATA SHOWCASE — static cards replacing 3D viewer -->
-    <section id="data-showcase" class="py-24 px-6 bg-white border-y border-gray-200">
+    <section
+      id="data-showcase"
+      class="py-24 px-6 bg-white border-y border-gray-200"
+    >
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="font-serif text-3xl text-charcoal mb-4">Evaluating the Ground Truth</h2>
+          <h2 class="font-serif text-3xl text-charcoal mb-4">
+            Evaluating the Ground Truth
+          </h2>
           <p class="text-sm text-slate max-w-2xl mx-auto font-mono">
-            Novas' physics intuition is built upon a curated corpus of over 200,000 quantum-mechanically validated crystal and transition metal coordination complexes spanning diverse elements, oxidation states, and coordination geometries.
+            Novas' physics intuition is built upon a curated corpus of over
+            200,000 quantum-mechanically validated crystal and transition metal
+            coordination complexes spanning diverse elements, oxidation states,
+            and coordination geometries.
           </p>
-          <p class="text-xs text-slate max-w-2xl mx-auto font-mono mt-4 italic bg-gray-50 py-2 rounded-sm border border-gray-100">
-            Representative samples from a held-out validation set of 8,621 complexes.
+          <p
+            class="text-xs text-slate max-w-2xl mx-auto font-mono mt-4 italic bg-gray-50 py-2 rounded-sm border border-gray-100"
+          >
+            Representative samples from a held-out validation set of 8,621
+            complexes.
           </p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
           <!-- Card 1: Rh complex -->
-          <div class="data-card bg-white border border-gray-200 rounded-sm p-8 shadow-sm flex flex-col">
-            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+          <div
+            class="data-card bg-white border border-gray-200 rounded-sm p-8 shadow-sm flex flex-col"
+          >
+            <div
+              class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100"
+            >
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Complex ID</div>
-                <div class="font-bold text-charcoal font-mono text-sm">mol_6791</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Complex ID
+                </div>
+                <div class="font-bold text-charcoal font-mono text-sm">
+                  mol_6791
+                </div>
               </div>
-              <div class="w-10 h-10 rounded-sm bg-blue-50 border border-blue-200 flex items-center justify-center">
+              <div
+                class="w-10 h-10 rounded-sm bg-blue-50 border border-blue-200 flex items-center justify-center"
+              >
                 <span class="font-mono text-xs font-bold text-cobalt">Rh</span>
               </div>
             </div>
             <div class="mb-4">
-              <div class="font-serif text-lg text-charcoal mb-1">Rhodium (Rh) Complex</div>
-              <div class="text-xs text-slate font-mono">Octahedral coordination</div>
+              <div class="font-serif text-lg text-charcoal mb-1">
+                Rhodium (Rh) Complex
+              </div>
+              <div class="text-xs text-slate font-mono">
+                Octahedral coordination
+              </div>
             </div>
-            <div class="mt-auto grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+            <div
+              class="mt-auto grid grid-cols-2 gap-4 pt-4 border-t border-gray-100"
+            >
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Atom Count</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Atom Count
+                </div>
                 <div class="text-sm font-bold text-charcoal">66 atoms</div>
               </div>
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">&Delta;E (per atom)</div>
-                <div class="text-sm font-bold text-accent-alpha">0.83 meV/atom</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  &Delta;E (per atom)
+                </div>
+                <div class="text-sm font-bold text-accent-alpha">
+                  0.83 meV/atom
+                </div>
               </div>
               <div class="col-span-2">
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">&Delta;E (total)</div>
-                <div class="text-sm font-bold text-charcoal">0.055 eV total</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  &Delta;E (total)
+                </div>
+                <div class="text-sm font-bold text-charcoal">
+                  0.055 eV total
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Card 2: Zn complex -->
-          <div class="data-card bg-white border border-gray-200 rounded-sm p-8 shadow-sm flex flex-col">
-            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+          <div
+            class="data-card bg-white border border-gray-200 rounded-sm p-8 shadow-sm flex flex-col"
+          >
+            <div
+              class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100"
+            >
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Complex ID</div>
-                <div class="font-bold text-charcoal font-mono text-sm">mol_65629</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Complex ID
+                </div>
+                <div class="font-bold text-charcoal font-mono text-sm">
+                  mol_65629
+                </div>
               </div>
-              <div class="w-10 h-10 rounded-sm bg-blue-50 border border-blue-200 flex items-center justify-center">
+              <div
+                class="w-10 h-10 rounded-sm bg-blue-50 border border-blue-200 flex items-center justify-center"
+              >
                 <span class="font-mono text-xs font-bold text-cobalt">Zn</span>
               </div>
             </div>
             <div class="mb-4">
-              <div class="font-serif text-lg text-charcoal mb-1">Zinc (Zn) Complex</div>
-              <div class="text-xs text-slate font-mono">Mixed N/O donor set</div>
+              <div class="font-serif text-lg text-charcoal mb-1">
+                Zinc (Zn) Complex
+              </div>
+              <div class="text-xs text-slate font-mono">
+                Mixed N/O donor set
+              </div>
             </div>
-            <div class="mt-auto grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+            <div
+              class="mt-auto grid grid-cols-2 gap-4 pt-4 border-t border-gray-100"
+            >
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Atom Count</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Atom Count
+                </div>
                 <div class="text-sm font-bold text-charcoal">80 atoms</div>
               </div>
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">&Delta;E (per atom)</div>
-                <div class="text-sm font-bold text-accent-alpha">1.07 meV/atom</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  &Delta;E (per atom)
+                </div>
+                <div class="text-sm font-bold text-accent-alpha">
+                  1.07 meV/atom
+                </div>
               </div>
               <div class="col-span-2">
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">&Delta;E (total)</div>
-                <div class="text-sm font-bold text-charcoal">0.086 eV total</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  &Delta;E (total)
+                </div>
+                <div class="text-sm font-bold text-charcoal">
+                  0.086 eV total
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Card 3: Pt complex -->
-          <div class="data-card bg-white border border-gray-200 rounded-sm p-8 shadow-sm flex flex-col">
-            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+          <div
+            class="data-card bg-white border border-gray-200 rounded-sm p-8 shadow-sm flex flex-col"
+          >
+            <div
+              class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100"
+            >
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Complex ID</div>
-                <div class="font-bold text-charcoal font-mono text-sm">mol_43220</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Complex ID
+                </div>
+                <div class="font-bold text-charcoal font-mono text-sm">
+                  mol_43220
+                </div>
               </div>
-              <div class="w-10 h-10 rounded-sm bg-blue-50 border border-blue-200 flex items-center justify-center">
+              <div
+                class="w-10 h-10 rounded-sm bg-blue-50 border border-blue-200 flex items-center justify-center"
+              >
                 <span class="font-mono text-xs font-bold text-cobalt">Pt</span>
               </div>
             </div>
             <div class="mb-4">
-              <div class="font-serif text-lg text-charcoal mb-1">Platinum (Pt) Complex</div>
-              <div class="text-xs text-slate font-mono">Square planar, S/N/Cl donors</div>
+              <div class="font-serif text-lg text-charcoal mb-1">
+                Platinum (Pt) Complex
+              </div>
+              <div class="text-xs text-slate font-mono">
+                Square planar, S/N/Cl donors
+              </div>
             </div>
-            <div class="mt-auto grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+            <div
+              class="mt-auto grid grid-cols-2 gap-4 pt-4 border-t border-gray-100"
+            >
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">Atom Count</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  Atom Count
+                </div>
                 <div class="text-sm font-bold text-charcoal">32 atoms</div>
               </div>
               <div>
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">&Delta;E (per atom)</div>
-                <div class="text-sm font-bold text-accent-alpha">4.25 meV/atom</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  &Delta;E (per atom)
+                </div>
+                <div class="text-sm font-bold text-accent-alpha">
+                  4.25 meV/atom
+                </div>
               </div>
               <div class="col-span-2">
-                <div class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1">&Delta;E (total)</div>
-                <div class="text-sm font-bold text-charcoal">0.136 eV total</div>
+                <div
+                  class="text-[10px] font-mono text-slate uppercase tracking-widest mb-1"
+                >
+                  &Delta;E (total)
+                </div>
+                <div class="text-sm font-bold text-charcoal">
+                  0.136 eV total
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <p class="text-[10px] text-gray-400 font-mono mt-8 text-right">All &Delta;E values are absolute errors between Kyln predictions and DFT ground truth.</p>
+        <p class="text-[10px] text-gray-400 font-mono mt-8 text-right">
+          All &Delta;E values are absolute errors between Kyln predictions and
+          DFT ground truth.
+        </p>
       </div>
     </section>
 
     <!-- ARCHITECTURE -->
-    <section id="architecture" class="py-24 px-6 bg-paper border-y border-gray-200">
+    <section
+      id="architecture"
+      class="py-24 px-6 bg-paper border-y border-gray-200"
+    >
       <div class="max-w-6xl mx-auto">
-        <h2 class="font-serif text-3xl text-charcoal mb-4 text-center">System Architecture</h2>
-        <p class="text-sm text-slate text-center max-w-2xl mx-auto mb-16 font-mono">Strict separation of concerns natively wired into a continuous active learning loop.</p>
+        <h2 class="font-serif text-3xl text-charcoal mb-4 text-center">
+          System Architecture
+        </h2>
+        <p
+          class="text-sm text-slate text-center max-w-2xl mx-auto mb-16 font-mono"
+        >
+          Strict separation of concerns natively wired into a continuous active
+          learning loop.
+        </p>
 
-        <div class="mb-16 hidden md:flex items-center justify-center space-x-2 w-full text-xs font-mono font-bold text-charcoal">
-          <div class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"><span class="text-slate text-[9px] mb-1">01. FORGE</span>GENERATE</div>
+        <div
+          class="mb-16 hidden md:flex items-center justify-center space-x-2 w-full text-xs font-mono font-bold text-charcoal"
+        >
+          <div
+            class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"
+          >
+            <span class="text-slate text-[9px] mb-1">01. FORGE</span>GENERATE
+          </div>
           <div class="text-accent-alpha text-lg">&rarr;</div>
-          <div class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"><span class="text-slate text-[9px] mb-1">02. NOVAS</span>PREDICT</div>
+          <div
+            class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"
+          >
+            <span class="text-slate text-[9px] mb-1">02. NOVAS</span>PREDICT
+          </div>
           <div class="text-accent-alpha text-lg">&rarr;</div>
-          <div class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"><span class="text-slate text-[9px] mb-1">03. REACTOR</span>CANDIDATE SELECT</div>
+          <div
+            class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"
+          >
+            <span class="text-slate text-[9px] mb-1">03. REACTOR</span>CANDIDATE
+            SELECT
+          </div>
           <div class="text-accent-alpha text-lg">&rarr;</div>
-          <div class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"><span class="text-slate text-[9px] mb-1">04. ORACLE</span>DFT VERIFY</div>
+          <div
+            class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"
+          >
+            <span class="text-slate text-[9px] mb-1">04. ORACLE</span>DFT VERIFY
+          </div>
           <div class="text-accent-alpha text-lg">&rarr;</div>
-          <div class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"><span class="text-slate text-[9px] mb-1">05. SYSTEM</span>RETRAIN</div>
+          <div
+            class="bg-white border border-gray-200 px-4 py-3 rounded-sm shadow-sm flex flex-col items-center"
+          >
+            <span class="text-slate text-[9px] mb-1">05. SYSTEM</span>RETRAIN
+          </div>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 mb-16">
           <div class="bg-white p-8 border border-gray-200 rounded-sm shadow-sm">
-            <div class="h-10 w-10 border border-accent-alpha text-accent-alpha flex items-center justify-center font-mono font-bold text-sm mb-6 rounded-sm bg-blue-50 shadow-sm">01</div>
+            <div
+              class="h-10 w-10 border border-accent-alpha text-accent-alpha flex items-center justify-center font-mono font-bold text-sm mb-6 rounded-sm bg-blue-50 shadow-sm"
+            >
+              01
+            </div>
             <h3 class="font-serif text-xl mb-1 text-charcoal">Novas</h3>
-            <p class="text-xs font-mono text-slate mb-6 uppercase tracking-wide">The AI Engine</p>
+            <p
+              class="text-xs font-mono text-slate mb-6 uppercase tracking-wide"
+            >
+              The AI Engine
+            </p>
             <p class="text-sm text-ink mb-6 leading-relaxed">
-              The proprietary neural architecture embeds high-order many-body geometric correlations into strict equivariant representations. Optimized to map complex potential energy surfaces with sub-chemical accuracy without sacrificing inference speed.
+              The proprietary neural architecture embeds high-order many-body
+              geometric correlations into strict equivariant representations.
+              Optimized to map complex potential energy surfaces with
+              sub-chemical accuracy without sacrificing inference speed.
             </p>
             <ul class="text-xs font-mono text-slate space-y-3">
-              <li class="flex items-start"><span class="mr-2 text-accent-alpha">&rarr;</span> Conservative Force Field Mapping via Autograd</li>
-              <li class="flex items-start"><span class="mr-2 text-accent-alpha">&rarr;</span> Deep Ensemble Uncertainty Quantification</li>
+              <li class="flex items-start">
+                <span class="mr-2 text-accent-alpha">&rarr;</span> Conservative
+                Force Field Mapping via Autograd
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 text-accent-alpha">&rarr;</span> Deep Ensemble
+                Uncertainty Quantification
+              </li>
             </ul>
           </div>
 
           <div class="bg-white p-8 border border-gray-200 rounded-sm shadow-sm">
-            <div class="h-10 w-10 border border-amber-500 text-amber-600 flex items-center justify-center font-mono font-bold text-sm mb-6 rounded-sm bg-amber-50 shadow-sm">02</div>
+            <div
+              class="h-10 w-10 border border-amber-500 text-amber-600 flex items-center justify-center font-mono font-bold text-sm mb-6 rounded-sm bg-amber-50 shadow-sm"
+            >
+              02
+            </div>
             <h3 class="font-serif text-xl mb-1 text-charcoal">Forge</h3>
-            <p class="text-xs font-mono text-slate mb-6 uppercase tracking-wide">The Generator</p>
+            <p
+              class="text-xs font-mono text-slate mb-6 uppercase tracking-wide"
+            >
+              The Generator
+            </p>
             <p class="text-sm text-ink mb-6 leading-relaxed">
-              A generative chemical space engine that utilizes inverse kinematics to algorithmically design and deterministically enforce 3D geometric closure on massive, highly-strained macrocyclic scaffolds.
+              A generative chemical space engine that utilizes inverse
+              kinematics to algorithmically design and deterministically enforce
+              3D geometric closure on massive, highly-strained macrocyclic
+              scaffolds.
             </p>
             <ul class="text-xs font-mono text-slate space-y-3">
-              <li class="flex items-start"><span class="mr-2 text-amber-500">&rarr;</span> Deterministic Conformational Pre-organization</li>
-              <li class="flex items-start"><span class="mr-2 text-amber-500">&rarr;</span> Rigid Motif Injection for Kinetic Inertness</li>
+              <li class="flex items-start">
+                <span class="mr-2 text-amber-500">&rarr;</span> Deterministic
+                Conformational Pre-organization
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 text-amber-500">&rarr;</span> Rigid Motif
+                Injection for Kinetic Inertness
+              </li>
             </ul>
           </div>
 
           <div class="bg-white p-8 border border-gray-200 rounded-sm shadow-sm">
-            <div class="h-10 w-10 border border-accent-beta text-accent-beta flex items-center justify-center font-mono font-bold text-sm mb-6 rounded-sm bg-green-50 shadow-sm">03</div>
+            <div
+              class="h-10 w-10 border border-accent-beta text-accent-beta flex items-center justify-center font-mono font-bold text-sm mb-6 rounded-sm bg-green-50 shadow-sm"
+            >
+              03
+            </div>
             <h3 class="font-serif text-xl mb-1 text-charcoal">Reactor</h3>
-            <p class="text-xs font-mono text-slate mb-6 uppercase tracking-wide">The Orchestrator</p>
+            <p
+              class="text-xs font-mono text-slate mb-6 uppercase tracking-wide"
+            >
+              The Orchestrator
+            </p>
             <p class="text-sm text-ink mb-6 leading-relaxed">
-              The active learning autopilot. Routes generated candidates through an autonomous cycle of AI prediction and verification against high-fidelity relativistic quantum mechanical oracles.
+              The active learning autopilot. Routes generated candidates through
+              an autonomous cycle of AI prediction and verification against
+              high-fidelity relativistic quantum mechanical oracles.
             </p>
             <ul class="text-xs font-mono text-slate space-y-3">
-              <li class="flex items-start"><span class="mr-2 text-accent-beta">&rarr;</span> High-Dimensional Thermodynamic Optimization</li>
-              <li class="flex items-start"><span class="mr-2 text-accent-beta">&rarr;</span> Continuous Automated Pipeline Retraining</li>
+              <li class="flex items-start">
+                <span class="mr-2 text-accent-beta">&rarr;</span>
+                High-Dimensional Thermodynamic Optimization
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 text-accent-beta">&rarr;</span> Continuous
+                Automated Pipeline Retraining
+              </li>
             </ul>
           </div>
         </div>
 
-        <div class="bg-gray-50 border-l-4 border-charcoal p-6 md:p-8 rounded-r-sm">
-          <h4 class="font-mono text-sm font-bold text-charcoal uppercase tracking-widest mb-3">Known Limitations &amp; Domain Extrapolation</h4>
+        <div
+          class="bg-gray-50 border-l-4 border-charcoal p-6 md:p-8 rounded-r-sm"
+        >
+          <h4
+            class="font-mono text-sm font-bold text-charcoal uppercase tracking-widest mb-3"
+          >
+            Known Limitations &amp; Domain Extrapolation
+          </h4>
           <p class="text-sm text-slate leading-relaxed">
-            Because high-fidelity, multi-reference quantum data for heavy actinides is virtually nonexistent, computational engines face a profound domain gap. Extrapolating predictions to f-block targets relies entirely on a network's mathematical capacity to generalize complex local chemical environments and profound scalar relativistic effects from lighter reference data. To systematically overcome this limitation, Kyln deploys a proprietary closed-loop verification engine. The system autonomously directs high-fidelity computational oracles to sample the most informative regions of the actinide potential energy surface, enabling rapid, targeted domain adaptation.
+            Because high-fidelity, multi-reference quantum data for heavy
+            actinides is virtually nonexistent, computational engines face a
+            profound domain gap. Extrapolating predictions to f-block targets
+            relies entirely on a network's mathematical capacity to generalize
+            complex local chemical environments and profound scalar relativistic
+            effects from lighter reference data. To systematically overcome this
+            limitation, Kyln deploys a proprietary closed-loop verification
+            engine. The system autonomously directs high-fidelity computational
+            oracles to sample the most informative regions of the actinide
+            potential energy surface, enabling rapid, targeted domain
+            adaptation.
           </p>
         </div>
       </div>
     </section>
 
     <!-- PIPELINES -->
-    <section id="pipelines" class="py-24 px-6 bg-white border-b border-gray-200">
+    <section
+      id="pipelines"
+      class="py-24 px-6 bg-white border-b border-gray-200"
+    >
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="font-serif text-3xl text-charcoal mb-4">Commercial Discovery Pipelines</h2>
+          <h2 class="font-serif text-3xl text-charcoal mb-4">
+            Commercial Discovery Pipelines
+          </h2>
           <p class="text-sm text-slate max-w-2xl mx-auto font-mono">
-            Generating composition-of-matter assets for high-value therapeutic applications.
+            Generating composition-of-matter assets for high-value therapeutic
+            applications.
           </p>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-8 items-start">
           <div class="lg:col-span-4 flex flex-col space-y-2">
-            <button onclick="selectPipeline(0)" class="pipeline-tile active border border-gray-200 bg-white p-5 rounded-sm text-left relative">
+            <button
+              onclick="selectPipeline(0)"
+              class="pipeline-tile active border border-gray-200 bg-white p-5 rounded-sm text-left relative"
+            >
               <div class="flex justify-between items-center mb-1">
-                <span class="font-bold text-lg text-charcoal">Actinium-225</span>
-                <span class="text-xs font-mono text-slate bg-gray-100 px-2 py-0.5 rounded">FTO Opportunity</span>
+                <span class="font-bold text-lg text-charcoal"
+                  >Actinium-225</span
+                >
+                <span
+                  class="text-xs font-mono text-slate bg-gray-100 px-2 py-0.5 rounded"
+                  >FTO Opportunity</span
+                >
               </div>
-              <div class="text-xs text-slate font-mono">Theranostic Alpha Emitters</div>
+              <div class="text-xs text-slate font-mono">
+                Theranostic Alpha Emitters
+              </div>
             </button>
-            <button onclick="selectPipeline(1)" class="pipeline-tile border border-gray-200 bg-white p-5 rounded-sm text-left relative">
+            <button
+              onclick="selectPipeline(1)"
+              class="pipeline-tile border border-gray-200 bg-white p-5 rounded-sm text-left relative"
+            >
               <div class="flex justify-between items-center mb-1">
                 <span class="font-bold text-lg text-charcoal">Ra-223</span>
-                <span class="text-xs font-mono text-slate bg-gray-100 px-2 py-0.5 rounded">Category Creator — No Prior Art</span>
+                <span
+                  class="text-xs font-mono text-slate bg-gray-100 px-2 py-0.5 rounded"
+                  >Category Creator — No Prior Art</span
+                >
               </div>
-              <div class="text-xs text-slate font-mono">Expanded Ionic Radii</div>
+              <div class="text-xs text-slate font-mono">
+                Expanded Ionic Radii
+              </div>
             </button>
-            <button onclick="selectPipeline(2)" class="pipeline-tile border border-gray-200 bg-white p-5 rounded-sm text-left relative">
+            <button
+              onclick="selectPipeline(2)"
+              class="pipeline-tile border border-gray-200 bg-white p-5 rounded-sm text-left relative"
+            >
               <div class="flex justify-between items-center mb-1">
                 <span class="font-bold text-lg text-charcoal">Pb-212</span>
-                <span class="text-xs font-mono text-slate bg-gray-100 px-2 py-0.5 rounded">In Vivo Generator — Recoil Resistance</span>
+                <span
+                  class="text-xs font-mono text-slate bg-gray-100 px-2 py-0.5 rounded"
+                  >In Vivo Generator — Recoil Resistance</span
+                >
               </div>
-              <div class="text-xs text-slate font-mono">Recoil-Resistant Chelation</div>
+              <div class="text-xs text-slate font-mono">
+                Recoil-Resistant Chelation
+              </div>
             </button>
           </div>
 
-          <div class="lg:col-span-8 bg-paper p-10 rounded-sm border border-gray-200 shadow-sm min-h-[320px] relative overflow-hidden transition-opacity duration-300" id="display-panel">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-bl-full -z-0"></div>
+          <div
+            class="lg:col-span-8 bg-paper p-10 rounded-sm border border-gray-200 shadow-sm min-h-[320px] relative overflow-hidden transition-opacity duration-300"
+            id="display-panel"
+          >
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-white rounded-bl-full -z-0"
+            ></div>
 
             <div class="relative z-10">
-              <div class="inline-block px-3 py-1 bg-blue-50 text-accent-alpha text-xs font-mono font-bold mb-6 rounded-sm" id="pipe-tag">Pipeline 01</div>
-              <h3 id="pipe-title" class="font-serif text-3xl mb-4 text-charcoal">Actinium-225 Theranostic Cages</h3>
+              <div
+                class="inline-block px-3 py-1 bg-blue-50 text-accent-alpha text-xs font-mono font-bold mb-6 rounded-sm"
+                id="pipe-tag"
+              >
+                Pipeline 01
+              </div>
+              <h3
+                id="pipe-title"
+                class="font-serif text-3xl mb-4 text-charcoal"
+              >
+                Actinium-225 Theranostic Cages
+              </h3>
 
               <div class="grid md:grid-cols-2 gap-8 mt-8">
                 <div>
-                  <h5 class="text-xs font-bold font-mono text-slate tracking-widest uppercase mb-2 border-b border-gray-200 pb-2">The Bottleneck</h5>
+                  <h5
+                    class="text-xs font-bold font-mono text-slate tracking-widest uppercase mb-2 border-b border-gray-200 pb-2"
+                  >
+                    The Bottleneck
+                  </h5>
                   <p id="pipe-problem" class="text-sm text-ink leading-relaxed">
-                    Ac-225 is a highly sought-after alpha-emitter, but its massive ionic radius demands extensive coordination. Current clinical options are limited by patent encumbrances and suboptimal thermodynamic profiles, relying on non-specific geometries.
+                    Ac-225 is a highly sought-after alpha-emitter, but its
+                    massive ionic radius demands extensive coordination. Current
+                    clinical options are limited by patent encumbrances and
+                    suboptimal thermodynamic profiles, relying on non-specific
+                    geometries.
                   </p>
                 </div>
                 <div>
-                  <h5 class="text-xs font-bold font-mono text-slate tracking-widest uppercase mb-2 border-b border-gray-200 pb-2">Kyln Objective</h5>
-                  <p id="pipe-solution" class="text-sm text-ink leading-relaxed mt-2">
-                    Generating novel, highly pre-organized macrocyclic architectures. The pipeline utilizes multi-objective optimization to ensure the chelator binds both the therapeutic isotope and a diagnostic pair with extreme affinity.
+                  <h5
+                    class="text-xs font-bold font-mono text-slate tracking-widest uppercase mb-2 border-b border-gray-200 pb-2"
+                  >
+                    Kyln Objective
+                  </h5>
+                  <p
+                    id="pipe-solution"
+                    class="text-sm text-ink leading-relaxed mt-2"
+                  >
+                    Generating novel, highly pre-organized macrocyclic
+                    architectures. The pipeline utilizes multi-objective
+                    optimization to ensure the chelator binds both the
+                    therapeutic isotope and a diagnostic pair with extreme
+                    affinity.
                   </p>
                 </div>
               </div>
@@ -693,12 +1380,20 @@
     <!-- PUBLICATIONS -->
     <section id="publications" class="py-24 px-6 bg-paper">
       <div class="max-w-6xl mx-auto">
-        <div class="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
-          <h2 class="font-serif text-2xl text-charcoal">Publications &amp; Preprints</h2>
+        <div
+          class="flex items-end justify-between mb-8 border-b border-gray-200 pb-4"
+        >
+          <h2 class="font-serif text-2xl text-charcoal">
+            Publications &amp; Preprints
+          </h2>
         </div>
         <div class="bg-white border border-gray-200 p-8 rounded-sm">
           <p class="text-sm text-slate font-mono leading-relaxed">
-            Research findings are in preparation for peer-reviewed submission. Publication is deferred pending provisional patent filings across three composition-of-matter families. Data, methods, and discovered chemical matter will be disclosed in full following priority date establishment.
+            Research findings are in preparation for peer-reviewed submission.
+            Publication is deferred pending provisional patent filings across
+            three composition-of-matter families. Data, methods, and discovered
+            chemical matter will be disclosed in full following priority date
+            establishment.
           </p>
         </div>
       </div>
@@ -708,22 +1403,39 @@
     <section id="roadmap" class="py-24 px-6 bg-white border-t border-gray-200">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="font-serif text-3xl text-charcoal mb-4">Development Roadmap</h2>
-          <p class="text-sm text-slate font-mono max-w-xl mx-auto">From computational discovery to national lab validation.</p>
+          <h2 class="font-serif text-3xl text-charcoal mb-4">
+            Development Roadmap
+          </h2>
+          <p class="text-sm text-slate font-mono max-w-xl mx-auto">
+            From computational discovery to national lab validation.
+          </p>
         </div>
 
         <!-- Timeline: horizontal on md+, vertical on mobile -->
         <div class="hidden md:flex items-start justify-between gap-0 relative">
           <!-- Line background -->
-          <div class="absolute top-[7px] left-0 right-0 h-0.5 bg-gray-200 z-0" style="left: calc(12.5%); right: calc(12.5%);"></div>
+          <div
+            class="absolute top-[7px] left-0 right-0 h-0.5 bg-gray-200 z-0"
+            style="left: calc(12.5%); right: calc(12.5%)"
+          ></div>
 
           <!-- Milestone 1: Complete -->
           <div class="flex flex-col items-center flex-1 relative z-10">
             <div class="timeline-dot-complete mb-4"></div>
-            <div class="bg-blue-50 border border-blue-200 rounded-sm p-5 text-center w-full max-w-[180px] shadow-sm">
-              <div class="text-[10px] font-mono font-bold text-accent-alpha uppercase tracking-widest mb-2">Complete</div>
-              <div class="font-serif text-base text-cobalt mb-1">AI Discovery</div>
-              <p class="text-[11px] text-slate font-mono leading-relaxed">Novas engine trained and validated. Candidate library generated.</p>
+            <div
+              class="bg-blue-50 border border-blue-200 rounded-sm p-5 text-center w-full max-w-[180px] shadow-sm"
+            >
+              <div
+                class="text-[10px] font-mono font-bold text-accent-alpha uppercase tracking-widest mb-2"
+              >
+                Complete
+              </div>
+              <div class="font-serif text-base text-cobalt mb-1">
+                AI Discovery
+              </div>
+              <p class="text-[11px] text-slate font-mono leading-relaxed">
+                Novas engine trained and validated. Candidate library generated.
+              </p>
             </div>
           </div>
 
@@ -733,10 +1445,20 @@
           <!-- Milestone 2: In Progress -->
           <div class="flex flex-col items-center flex-1 relative z-10">
             <div class="timeline-dot-inprogress mb-4"></div>
-            <div class="bg-blue-50 border border-blue-200 border-dashed rounded-sm p-5 text-center w-full max-w-[180px] shadow-sm">
-              <div class="text-[10px] font-mono font-bold text-accent-alpha uppercase tracking-widest mb-2">In Progress</div>
-              <div class="font-serif text-base text-cobalt mb-1">Patent Filing</div>
-              <p class="text-[11px] text-slate font-mono leading-relaxed">Provisional filings across three composition-of-matter families.</p>
+            <div
+              class="bg-blue-50 border border-blue-200 border-dashed rounded-sm p-5 text-center w-full max-w-[180px] shadow-sm"
+            >
+              <div
+                class="text-[10px] font-mono font-bold text-accent-alpha uppercase tracking-widest mb-2"
+              >
+                In Progress
+              </div>
+              <div class="font-serif text-base text-cobalt mb-1">
+                Patent Filing
+              </div>
+              <p class="text-[11px] text-slate font-mono leading-relaxed">
+                Provisional filings across three composition-of-matter families.
+              </p>
             </div>
           </div>
 
@@ -746,10 +1468,21 @@
           <!-- Milestone 3: Upcoming -->
           <div class="flex flex-col items-center flex-1 relative z-10">
             <div class="timeline-dot-upcoming mb-4"></div>
-            <div class="bg-paper border border-gray-200 rounded-sm p-5 text-center w-full max-w-[180px] shadow-sm">
-              <div class="text-[10px] font-mono font-bold text-slate uppercase tracking-widest mb-2">Upcoming</div>
-              <div class="font-serif text-base text-charcoal mb-1">Cold Synthesis (CRO)</div>
-              <p class="text-[11px] text-slate font-mono leading-relaxed">Top-ranked candidates sent to contract research org for synthesis.</p>
+            <div
+              class="bg-paper border border-gray-200 rounded-sm p-5 text-center w-full max-w-[180px] shadow-sm"
+            >
+              <div
+                class="text-[10px] font-mono font-bold text-slate uppercase tracking-widest mb-2"
+              >
+                Upcoming
+              </div>
+              <div class="font-serif text-base text-charcoal mb-1">
+                Cold Synthesis (CRO)
+              </div>
+              <p class="text-[11px] text-slate font-mono leading-relaxed">
+                Top-ranked candidates sent to contract research org for
+                synthesis.
+              </p>
             </div>
           </div>
 
@@ -759,10 +1492,20 @@
           <!-- Milestone 4: Upcoming -->
           <div class="flex flex-col items-center flex-1 relative z-10">
             <div class="timeline-dot-upcoming mb-4"></div>
-            <div class="bg-paper border border-gray-200 rounded-sm p-5 text-center w-full max-w-[180px] shadow-sm">
-              <div class="text-[10px] font-mono font-bold text-slate uppercase tracking-widest mb-2">Upcoming</div>
-              <div class="font-serif text-base text-charcoal mb-1">National Lab Validation</div>
-              <p class="text-[11px] text-slate font-mono leading-relaxed">Hot validation with Ac-225 / Ra-223 at LANL or ORNL.</p>
+            <div
+              class="bg-paper border border-gray-200 rounded-sm p-5 text-center w-full max-w-[180px] shadow-sm"
+            >
+              <div
+                class="text-[10px] font-mono font-bold text-slate uppercase tracking-widest mb-2"
+              >
+                Upcoming
+              </div>
+              <div class="font-serif text-base text-charcoal mb-1">
+                National Lab Validation
+              </div>
+              <p class="text-[11px] text-slate font-mono leading-relaxed">
+                Hot validation with Ac-225 / Ra-223 at LANL or ORNL.
+              </p>
             </div>
           </div>
         </div>
@@ -772,44 +1515,91 @@
           <div class="flex items-start gap-4">
             <div class="flex flex-col items-center">
               <div class="timeline-dot-complete mt-1"></div>
-              <div class="w-0.5 h-full bg-accent-alpha mt-2 flex-1 min-h-[40px]"></div>
+              <div
+                class="w-0.5 h-full bg-accent-alpha mt-2 flex-1 min-h-[40px]"
+              ></div>
             </div>
-            <div class="bg-blue-50 border border-blue-200 rounded-sm p-5 flex-1 shadow-sm">
-              <div class="text-[10px] font-mono font-bold text-accent-alpha uppercase tracking-widest mb-1">Complete</div>
-              <div class="font-serif text-base text-cobalt mb-1">AI Discovery</div>
-              <p class="text-xs text-slate font-mono">Novas engine trained and validated. Candidate library generated.</p>
+            <div
+              class="bg-blue-50 border border-blue-200 rounded-sm p-5 flex-1 shadow-sm"
+            >
+              <div
+                class="text-[10px] font-mono font-bold text-accent-alpha uppercase tracking-widest mb-1"
+              >
+                Complete
+              </div>
+              <div class="font-serif text-base text-cobalt mb-1">
+                AI Discovery
+              </div>
+              <p class="text-xs text-slate font-mono">
+                Novas engine trained and validated. Candidate library generated.
+              </p>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <div class="flex flex-col items-center">
               <div class="timeline-dot-inprogress mt-1"></div>
-              <div class="w-0.5 h-full bg-gray-200 mt-2 flex-1 min-h-[40px]"></div>
+              <div
+                class="w-0.5 h-full bg-gray-200 mt-2 flex-1 min-h-[40px]"
+              ></div>
             </div>
-            <div class="bg-blue-50 border border-blue-200 border-dashed rounded-sm p-5 flex-1 shadow-sm">
-              <div class="text-[10px] font-mono font-bold text-accent-alpha uppercase tracking-widest mb-1">In Progress</div>
-              <div class="font-serif text-base text-cobalt mb-1">Patent Filing</div>
-              <p class="text-xs text-slate font-mono">Provisional filings across three composition-of-matter families.</p>
+            <div
+              class="bg-blue-50 border border-blue-200 border-dashed rounded-sm p-5 flex-1 shadow-sm"
+            >
+              <div
+                class="text-[10px] font-mono font-bold text-accent-alpha uppercase tracking-widest mb-1"
+              >
+                In Progress
+              </div>
+              <div class="font-serif text-base text-cobalt mb-1">
+                Patent Filing
+              </div>
+              <p class="text-xs text-slate font-mono">
+                Provisional filings across three composition-of-matter families.
+              </p>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <div class="flex flex-col items-center">
               <div class="timeline-dot-upcoming mt-1"></div>
-              <div class="w-0.5 h-full bg-gray-200 mt-2 flex-1 min-h-[40px]"></div>
+              <div
+                class="w-0.5 h-full bg-gray-200 mt-2 flex-1 min-h-[40px]"
+              ></div>
             </div>
-            <div class="bg-paper border border-gray-200 rounded-sm p-5 flex-1 shadow-sm">
-              <div class="text-[10px] font-mono font-bold text-slate uppercase tracking-widest mb-1">Upcoming</div>
-              <div class="font-serif text-base text-charcoal mb-1">Cold Synthesis (CRO)</div>
-              <p class="text-xs text-slate font-mono">Top-ranked candidates sent to contract research org for synthesis.</p>
+            <div
+              class="bg-paper border border-gray-200 rounded-sm p-5 flex-1 shadow-sm"
+            >
+              <div
+                class="text-[10px] font-mono font-bold text-slate uppercase tracking-widest mb-1"
+              >
+                Upcoming
+              </div>
+              <div class="font-serif text-base text-charcoal mb-1">
+                Cold Synthesis (CRO)
+              </div>
+              <p class="text-xs text-slate font-mono">
+                Top-ranked candidates sent to contract research org for
+                synthesis.
+              </p>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <div class="flex flex-col items-center">
               <div class="timeline-dot-upcoming mt-1"></div>
             </div>
-            <div class="bg-paper border border-gray-200 rounded-sm p-5 flex-1 shadow-sm">
-              <div class="text-[10px] font-mono font-bold text-slate uppercase tracking-widest mb-1">Upcoming</div>
-              <div class="font-serif text-base text-charcoal mb-1">National Lab Validation</div>
-              <p class="text-xs text-slate font-mono">Hot validation with Ac-225 / Ra-223 at LANL or ORNL.</p>
+            <div
+              class="bg-paper border border-gray-200 rounded-sm p-5 flex-1 shadow-sm"
+            >
+              <div
+                class="text-[10px] font-mono font-bold text-slate uppercase tracking-widest mb-1"
+              >
+                Upcoming
+              </div>
+              <div class="font-serif text-base text-charcoal mb-1">
+                National Lab Validation
+              </div>
+              <p class="text-xs text-slate font-mono">
+                Hot validation with Ac-225 / Ra-223 at LANL or ORNL.
+              </p>
             </div>
           </div>
         </div>
@@ -821,20 +1611,38 @@
       <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
         <div>
           <div class="flex items-center space-x-2 mb-4">
-            <div class="w-2.5 h-2.5 bg-accent-alpha rounded-sm rotate-45"></div>
+            <div
+              class="overflow-hidden flex-shrink-0"
+              style="width: 44px; height: 32px"
+            >
+              <img
+                src="icon.png"
+                style="width: 44px; display: block"
+                alt="Kyln"
+              />
+            </div>
             <h4 class="font-serif text-2xl">KYLN</h4>
           </div>
           <p class="text-sm text-gray-400 max-w-sm leading-relaxed mb-6">
-            Developing the computational infrastructure required to design next-generation molecular carriers for heavy therapeutic radionuclides.
+            Developing the computational infrastructure required to design
+            next-generation molecular carriers for heavy therapeutic
+            radionuclides.
           </p>
-          <a href="mailto:rfenno2@jhu.edu" class="inline-flex items-center justify-center px-6 py-2.5 border border-accent-alpha text-accent-alpha hover:bg-accent-alpha hover:text-white transition-colors text-sm font-mono rounded-sm">
+          <a
+            href="mailto:rfenno2@jhu.edu"
+            class="inline-flex items-center justify-center px-6 py-2.5 border border-accent-alpha text-accent-alpha hover:bg-accent-alpha hover:text-white transition-colors text-sm font-mono rounded-sm"
+          >
             Contact for Inquiries
           </a>
         </div>
 
         <div class="flex flex-col md:text-right justify-end">
-          <p class="text-sm text-gray-300 font-mono mb-2">Lead Architect: Reed Fenno</p>
-          <p class="text-xs text-gray-600 font-mono">&copy; 2026 Kyln. All Rights Reserved.</p>
+          <p class="text-sm text-gray-300 font-mono mb-2">
+            Lead Architect: Reed Fenno
+          </p>
+          <p class="text-xs text-gray-600 font-mono">
+            &copy; 2026 Kyln. All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>
@@ -845,21 +1653,27 @@
         {
           tag: "Pipeline 01",
           title: "Actinium-225 Theranostic Cages",
-          problem: "Ac-225 is a highly sought-after alpha-emitter, but its massive ionic radius demands extensive coordination. Current clinical options are limited by patent encumbrances and suboptimal thermodynamic profiles, relying on non-specific geometries.",
-          solution: "Generating novel, highly pre-organized macrocyclic architectures. The pipeline utilizes multi-objective optimization to ensure the chelator binds both the therapeutic isotope and a diagnostic pair with extreme affinity."
+          problem:
+            "Ac-225 is a highly sought-after alpha-emitter, but its massive ionic radius demands extensive coordination. Current clinical options are limited by patent encumbrances and suboptimal thermodynamic profiles, relying on non-specific geometries.",
+          solution:
+            "Generating novel, highly pre-organized macrocyclic architectures. The pipeline utilizes multi-objective optimization to ensure the chelator binds both the therapeutic isotope and a diagnostic pair with extreme affinity.",
         },
         {
           tag: "Pipeline 02",
           title: "Ra-223 Large-Cavity Cages",
-          problem: "Ra-223 is the only alpha-emitting isotope with an FDA-approved therapy (Xofigo), yet no purpose-built chelator exists for it. Its massive ionic radius and zero covalent bonding preference make conventional macrocycles structurally inadequate — this is a true white-space opportunity with no prior art.",
-          solution: "Deploying generative algorithms to construct unprecedented large-cavity coordination cages. By establishing the first chelation framework for Ra-223, this pipeline acts as a category creator — potentially enabling targeted Ra-223 therapies beyond bone metastases."
+          problem:
+            "Ra-223 is the only alpha-emitting isotope with an FDA-approved therapy (Xofigo), yet no purpose-built chelator exists for it. Its massive ionic radius and zero covalent bonding preference make conventional macrocycles structurally inadequate — this is a true white-space opportunity with no prior art.",
+          solution:
+            "Deploying generative algorithms to construct unprecedented large-cavity coordination cages. By establishing the first chelation framework for Ra-223, this pipeline acts as a category creator — potentially enabling targeted Ra-223 therapies beyond bone metastases.",
         },
         {
           tag: "Pipeline 03",
           title: "Pb-212 Recoil-Resistant Chelators",
-          problem: "Pb-212 is an in vivo generator: it decays to Bi-212, an alpha-emitter, inside the patient. The chelator must survive this nuclear transmutation — the ion abruptly changes ionic radius and oxidation state — without releasing the daughter isotope into healthy tissue.",
-          solution: "Applying proprietary multi-state optimization across the full decay chain. Kyln maps the thermodynamic trade-offs to identify macrocyclic geometries with sufficient kinetic inertness to retain both parent and daughter isotopes throughout the decay sequence."
-        }
+          problem:
+            "Pb-212 is an in vivo generator: it decays to Bi-212, an alpha-emitter, inside the patient. The chelator must survive this nuclear transmutation — the ion abruptly changes ionic radius and oxidation state — without releasing the daughter isotope into healthy tissue.",
+          solution:
+            "Applying proprietary multi-state optimization across the full decay chain. Kyln maps the thermodynamic trade-offs to identify macrocyclic geometries with sufficient kinetic inertness to retain both parent and daughter isotopes throughout the decay sequence.",
+        },
       ];
 
       function selectPipeline(index) {
